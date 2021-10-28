@@ -1,8 +1,17 @@
 {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnPaste": false,
     "editor.formatOnSave": true,
-    "eslint.alwaysShowStatus": true,
-    "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-    }
-    }
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+    "[html]": {
+        "editor.formatOnSave": false
+    },
+    "[json]": {
+        "editor.formatOnSave": false
+    },
+    "[typescript]": {
+        "editor.formatOnSave": true
+    },
+    "eslint.alwaysShowStatus": true
+}
