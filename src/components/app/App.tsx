@@ -1,17 +1,17 @@
 import React, { FC } from 'react'
 import './App.scss'
-import Header from '../header/header'
-import RandomFilms from '../randomFilm/randomFilms'
-import Recommend from '../recommend/recommend'
-import New from '../new/new'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from '../home/home'
+import Header from '../header/header';
+
 
 const App: FC = () => (
+    <>
     <div className="App">
         <Header />
-        <RandomFilms />
-        <Recommend />
-        <New />
+        <Home />
     </div>
+    </>
 )
 
 export default App

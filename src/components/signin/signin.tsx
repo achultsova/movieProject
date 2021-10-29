@@ -1,12 +1,11 @@
 import React, { FC } from 'react'
-import './signin.scss'
+import { Button } from 'react-bootstrap'
 
 const Signin: FC = () => (
-     <div className = "registration_header">
-         <a className = "btn_registration" href = "#">
-             Вход
-         </a>
-     </div>
+    <>
+         <Button style = {{'margin': '10px'}} variant = "light" className = "mr-2"> Вход </Button>
+         <Button style = {{'margin': '10px'}} variant = "warning" className = "mr-2"> Регистрация </Button>
+     </>
 )
 
 export default Signin
