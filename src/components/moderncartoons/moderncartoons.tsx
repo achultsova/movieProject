@@ -1,27 +1,27 @@
 import React, { FC } from 'react'
-import './recommend.scss'
+import './moderncartoons.scss'
 import { Card} from 'react-bootstrap'
 
-import movie1 from './recmovies/movie1.jpg'
-import movie2 from './recmovies/movie2.jpeg'
-import movie3 from './recmovies/movie3.jpg'
-import movie4 from './recmovies/movie4.jpg'
-import movie5 from './recmovies/movie5.jpg'
-import movie6 from './recmovies/movie6.jpg'
+import movie1 from './cartoons/cartoon1.png'
+import movie2 from './cartoons/cartoon2.png'
+import movie3 from './cartoons/cartoon3.png'
+import movie4 from './cartoons/cartoon4.jpg'
+import movie5 from './cartoons/cartoon5.jpg'
+import movie6 from './cartoons/cartoon6.jpg'
 
 interface Icard {
     image: string;
     link: string;
 }
 
-const Recommend: FC = () => {
+const ModernCartoons: FC = () => {
     const cardInfo: Icard[] = [
-        {image: movie1, link: "Капитан Марвел"},
-        {image: movie2, link: "Черная вдова"},
-        {image: movie3, link: "Гарри Поттер"},
-        {image: movie4, link: "Сталинград"},
-        {image: movie5, link: "Неудержимые"},
-        {image: movie6, link: "Начало"},
+        {image: movie1, link: "Виво"},
+        {image: movie2, link: "Монстры за работой"},
+        {image: movie3, link: "Академия Монстров"},
+        {image: movie4, link: "Рио"},
+        {image: movie5, link: "Фердинанд"},
+        {image: movie6, link: "Лило и Стич"},
     ]
 
     const RenderCard: FC<{ card: Icard }> = ({ card }) => (
@@ -35,13 +35,11 @@ const Recommend: FC = () => {
     )
 
     return (
-        <div className = "recommend">
+        <div className = "modern_cartoons">
             <div className= "m_c">
-                <h3 className = "rec">Рекомендуем:</h3>
+                <h3 className = "m_cartoons">Современные мультфильмы:</h3>
                 <a style = {{'color': 'white'}} href = '#'>Смотреть все</a>
             </div> 
-                
-            
             <div className = "cards">
             {
                 cardInfo.map((card: Icard, index: number) => (<RenderCard card ={ card } key = {index} />))
@@ -54,4 +52,4 @@ const Recommend: FC = () => {
 };
     
 
-export default Recommend
+export default ModernCartoons

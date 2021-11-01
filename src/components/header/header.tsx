@@ -7,11 +7,11 @@ import Signin from '../signin/signin'
 
 
 const Header: FC = () => (
-    <>
-            <Navbar fixed = "top" collapseOnSelect expand = "md" bg = "dark" variant = "dark"  >
-                <Container>
+    <div className = "header">
+            <Navbar fixed = "top" collapseOnSelect expand = "md" style = {{backgroundColor: '#232323'}} bg = "dark" variant = "dark"  >
+                <Container style= {{display: 'flex', justifyContent: 'space-between'}}>
                 <Navbar.Brand href = "/">
-                     <img src = { logo } height = "55px" width = "217px" className = "d-inline-block align-top" alt = "logo" />
+                     <img src = { logo } height = "55px" width = "217px"  alt = "logo" />
                       </Navbar.Brand> 
                 <Navbar.Toggle aria-controls = "responsive-navbar-nav" />
                 <Navbar.Collapse id = "responsive-navbar-nav">
@@ -30,7 +30,7 @@ const Header: FC = () => (
                 </Navbar.Collapse>
                 </Container>
             </Navbar>
-        </>
+        </div>
 )
 
 export default Header

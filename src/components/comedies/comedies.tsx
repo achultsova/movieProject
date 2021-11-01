@@ -1,27 +1,27 @@
 import React, { FC } from 'react'
-import './recommend.scss'
+import './comedies.scss'
 import { Card} from 'react-bootstrap'
 
-import movie1 from './recmovies/movie1.jpg'
-import movie2 from './recmovies/movie2.jpeg'
-import movie3 from './recmovies/movie3.jpg'
-import movie4 from './recmovies/movie4.jpg'
-import movie5 from './recmovies/movie5.jpg'
-import movie6 from './recmovies/movie6.jpg'
+import movie1 from './comedyfilms/movie1.jpg'
+import movie2 from './comedyfilms/movie2.jpg'
+import movie3 from './comedyfilms/movie3.jpg'
+import movie4 from './comedyfilms/movie4.jpg'
+import movie5 from './comedyfilms/movie5.png'
+import movie6 from './comedyfilms/movie6.jpg'
 
 interface Icard {
     image: string;
     link: string;
 }
 
-const Recommend: FC = () => {
+const Comedies: FC = () => {
     const cardInfo: Icard[] = [
-        {image: movie1, link: "Капитан Марвел"},
-        {image: movie2, link: "Черная вдова"},
-        {image: movie3, link: "Гарри Поттер"},
-        {image: movie4, link: "Сталинград"},
-        {image: movie5, link: "Неудержимые"},
-        {image: movie6, link: "Начало"},
+        {image: movie1, link: "Отпетые мошенницы"},
+        {image: movie2, link: "За бортом"},
+        {image: movie3, link: "Девушки бывают разные"},
+        {image: movie4, link: "Удалить историю"},
+        {image: movie5, link: "Семейный бюджет"},
+        {image: movie6, link: "Родные"},
     ]
 
     const RenderCard: FC<{ card: Icard }> = ({ card }) => (
@@ -35,13 +35,11 @@ const Recommend: FC = () => {
     )
 
     return (
-        <div className = "recommend">
+        <div className = "comedy_films">
             <div className= "m_c">
-                <h3 className = "rec">Рекомендуем:</h3>
+                <h3 className = "comedies">Комедии:</h3>
                 <a style = {{'color': 'white'}} href = '#'>Смотреть все</a>
             </div> 
-                
-            
             <div className = "cards">
             {
                 cardInfo.map((card: Icard, index: number) => (<RenderCard card ={ card } key = {index} />))
@@ -54,4 +52,4 @@ const Recommend: FC = () => {
 };
     
 
-export default Recommend
+export default Comedies

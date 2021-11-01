@@ -1,10 +1,10 @@
-.recommend {
+.modern_cartoons {
     height: 400px;
     padding-left: 138px;
     padding-right: 138px;
 }
 
-.rec {
+.m_cartoons {
     color: white;
     font-weight: 700;
     font-size: 24px;
@@ -15,4 +15,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.m_c {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
