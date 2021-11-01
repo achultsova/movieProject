@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
 import { Navbar, Nav, Container, Form } from 'react-bootstrap'
 import './header.scss'
+import { Link } from 'react-router-dom'
 import logo from './icons/logo.svg' 
 import Signin from '../signin/signin'
+
 
 
 
@@ -16,15 +18,15 @@ const Header: FC = () => (
                 <Navbar.Toggle aria-controls = "responsive-navbar-nav" />
                 <Navbar.Collapse id = "responsive-navbar-nav">
                     <Nav className = "mr-auto links">
-                        <Nav.Item > <Nav.Link style = {{'color': 'white'}} href = "#" >Фильмы</Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link style = {{'color': 'white'}} href = "#" >Сериалы</Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link style = {{'color': 'white'}} href = "#" >Мультфильмы</Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link style = {{'color': 'white'}} href = "#" >Шоу</Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link style = {{'color': 'white'}} href = "#" >Коллекции</Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link style = {{'color': 'white'}} href = "#" >График кинопремьер</Nav.Link> </Nav.Item>
+                        <Nav.Item > <Nav.Link> <Link to = "/films" style= {{color: 'white'}}>Фильмы</Link></Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link> <Link to ="/series" style= {{color: 'white'}}> Сериалы</Link></Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link> <Link to ="/cartoons" style= {{color: 'white'}}>Мультфильмы</Link> </Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link><Link to ="/shows" style= {{color: 'white'}}>Шоу</Link></Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link><Link to ="/collections" style= {{color: 'white'}}>Коллекции</Link></Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link><Link to ="/primeSchedule" style= {{color: 'white'}}>График кинопремьер</Link></Nav.Link> </Nav.Item>
                     </Nav>
                    <Form >
-                        <Form.Control style = {{'margin': '10px', 'padding': '8px, 0, 8px, 16px'}} type = "text" placeholder = "поиск" className = "mr-sm-2 search" /> 
+                        <Form.Control style = {{'margin': '10px', 'padding': '8px, 0, 8px, 16px'}} type = "text" placeholder = "поиск" className = "mr-20" /> 
                     </Form>
                     <Nav>  < Signin /> </Nav>
                 </Navbar.Collapse>
