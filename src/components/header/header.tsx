@@ -24,7 +24,7 @@ const Header: FC = () => (
                         <Nav.Item> <Nav.Link style = {{'color': 'white'}} href = "#" >График кинопремьер</Nav.Link> </Nav.Item>
                     </Nav>
                    <Form >
-                        <Form.Control style = {{'margin': '10px'}} type = "text" placeholder = "поиск" className = "mr-sm-2 search" /> 
+                        <Form.Control style = {{'margin': '10px', 'padding': '8px, 0, 8px, 16px'}} type = "text" placeholder = "поиск" className = "mr-sm-2 search" /> 
                     </Form>
                     <Nav>  < Signin /> </Nav>
                 </Navbar.Collapse>
