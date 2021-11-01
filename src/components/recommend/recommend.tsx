@@ -9,22 +9,23 @@ import movie4 from './recmovies/movie4.jpg'
 import movie5 from './recmovies/movie5.jpg'
 import movie6 from './recmovies/movie6.jpg'
 
-
-const cardInfo = [
-    {image: { movie1 }, link: "Капитан Марвел"}, 
-    {image: { movie2 }, link: "Черная вдова"},
-    {image: { movie3 }, link: "Гарри Поттер"},
-    {image: { movie4 }, link: "Сталинград"},
-    {image: { movie5 }, link: "Неудержимые"},
-    {image: { movie6 }, link: "Начало"}
-]
+interface Icard {
+    image: string;
+    link: string;
+}
 
 const Recommend: FC = () => {
-    interface Icard {
-        image: string;
-        link: string;
-    }
     
+    
+    const cardInfo = [
+        {image: { movie1 }, link: "Капитан Марвел"}, 
+        {image: { movie2 }, link: "Черная вдова"},
+        {image: { movie3 }, link: "Гарри Поттер"},
+        {image: { movie4 }, link: "Сталинград"},
+        {image: { movie5 }, link: "Неудержимые"},
+        {image: { movie6 }, link: "Начало"}
+    ]
+
     const renderCard = (card: Icard [], index: number) => {
         return (
             <Card style = {{'display': 'inline-block','color': 'white', 'background': '#141414', 'border': 'solid black', 'width': '12rem'}} key = {index} className = "mb-3 text-center">
