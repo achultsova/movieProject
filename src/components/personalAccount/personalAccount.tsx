@@ -4,7 +4,7 @@ import React, { FC } from 'react'
 const PersonalAccount: FC = () => (
     <div className = "personal_page">
         <div className = "personal_photo">
-            <img></img>
+            <img ></img>
             
         </div>
         <div className = "personal_name">
