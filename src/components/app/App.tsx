@@ -12,6 +12,7 @@ import Cartoons from '../cartoons/cartoons';
 import Collections from '../collections/collections';
 import PrimeSchedule from '../primeSchedule/primeSchedule';
 import Footer from '../footer/footer';
+import Registration from '../registration/registration';
 
 
 
@@ -28,6 +29,7 @@ const App: FC = () => (
                 <Route path = "/cartoons" component = {Cartoons} />
                 <Route path = "/collections" component = {Collections} />
                 <Route path = "/primeSchedule" component = {PrimeSchedule} />
+                <Route path = "/registration" component = {Registration} />
             </Switch>
             <Footer />
         </Router>
