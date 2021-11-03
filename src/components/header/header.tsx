@@ -6,6 +6,10 @@ import logo from './icons/logo.svg'
 
 const Header: FC = () => {
 
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+
     const [show, setShow] = useState (false);
 
     const handleClose = () => setShow(false);
@@ -21,11 +25,11 @@ const Header: FC = () => {
                     <Form style = {{marginBottom: "10px"}}> 
                         <Form.Group controlId = "fromBasicEmail" style= {{marginBottom: "10px"}}>
                             <Form.Label>Email адрес:</Form.Label>
-                            <Form.Control type="email" placeholder = "Укажите Ваш email"/>
+                            <Form.Control type="email" placeholder = "Укажите Ваш email" value = {email} onChange = {(e) => setEmail(e.target.value)}/>
                         </Form.Group>
                         <Form.Group controlId = "fromBasicPassword">
                             <Form.Label>Пароль:</Form.Label>
-                            <Form.Control type="password" placeholder = "Укажите Ваш пароль"/>
+                            <Form.Control type="password" placeholder = "Укажите Ваш пароль" value = {password} onChange = {(e) => setPassword(e.target.value)}/>
                         </Form.Group>
                         <Form.Group controlId = "fromBasicCheckbox">
                             <Form.Check type="checkbox" label = "Запомнить меня"/>
@@ -57,7 +61,10 @@ return (
                         <Nav.Item> <Nav.Link><Link to ="/primeSchedule" style= {{color: 'white'}}>График кинопремьер</Link></Nav.Link> </Nav.Item>
                     </Nav>
                     <Form >
-                        <Form.Control style = {{'margin': '10px', 'padding': '8px, 0, 8px, 16px', width: "100%", maxWidth: "200px"}} type = "text" placeholder = "поиск" className = "ms-auto" /> 
+                        <Form.Control style = {{'margin': '10px', 'padding': '8px, 0, 8px, 16px', width: "100%", maxWidth: "200px"}}
+                        type = "text"
+                        placeholder = "поиск"
+                        className = "ms-auto" /> 
                     </Form>
                     <Nav>  
                         <Button style = {{'margin': '10px'}} variant = "light" className = "mr-2" onClick = {handleShow}> Вход </Button>
@@ -72,4 +79,4 @@ return (
 }
 
 
-export default Header
+export default Header;
