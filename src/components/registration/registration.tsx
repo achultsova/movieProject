@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Form, Button } from 'react-bootstrap'
-import { propTypes } from 'react-bootstrap/esm/Image'
+import { connect } from 'react-redux'
+import { userPostFetch } from '../store/action'
 
 
 const Registration: FC = () => {
@@ -49,5 +50,9 @@ const Registration: FC = () => {
     )
 }
 
+const mapDispatchToProps = (dispatch: any) => ({
+    userPostFetch: userInfo => dispatch (userPostFetch(userInfo))
+})
 
-export default Registration
+
+export default connect(null, mapDispatchToProps) (Registration);
