@@ -17,7 +17,6 @@ import Registration from '../registration/registration';
 
 
 const App: FC = () => (
-    <>
     <div className="App">
         <Router> 
         <Header />
@@ -34,7 +33,6 @@ const App: FC = () => (
             <Footer />
         </Router>
     </div>
-    </>
 )
 
 export default App
