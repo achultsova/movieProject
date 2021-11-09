@@ -2,14 +2,16 @@ import React, { FC, useState } from 'react'
 import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap'
 import './header.scss'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import logo from './icons/logo.svg'  
 import ModalSignIn from '../modalSignIn/modalSignIn'
+import { RootStore } from '../../store/store';
 
-
-const Header: FC = () => {   
+const Header: FC = () => {
     const [show, setShow] = useState (false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
+    const authenticated = useSelector((state: RootStore) => state.authenticated)
      
 return (
     <div className = "header">
@@ -34,10 +36,17 @@ return (
                         placeholder = "поиск"
                         className = "ms-auto" /> 
                     </Form>
-                    <Nav>  
-                        <Button style = {{'margin': '10px'}} variant = "light" className = "mr-2" onClick = {handleShow}> Вход </Button>
-                        <Button style = {{'margin': '10px'}} variant = "warning" className = "mr-2" href= "/registration">Регистрация</Button>
-                    </Nav>
+                  {authenticated ? (<Nav>
+                      <Button style={{ 'margin': '10px' }} variant="warning" className="mr-2" href="/account">Личный
+                        кабинет</Button>
+                    </Nav>) :
+                    (<Nav>
+                      <Button style={{ 'margin': '10px' }} variant="light" className="mr-2"
+                              onClick={handleShow}> Вход </Button>
+                      <Button style={{ 'margin': '10px' }} variant="warning" className="mr-2"
+                              href="/registration">Регистрация</Button>
+                    </Nav>)
+                  }
                 </Navbar.Collapse>
                 </Container>
             </Navbar>

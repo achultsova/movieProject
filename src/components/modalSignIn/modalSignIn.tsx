@@ -8,19 +8,15 @@ import loginAction from '../../actions/loginAction'
 const ModalSignIn: FC<{show: boolean, handleClose: () => void}> = ({show, handleClose}) => {
 
     const dispatch = useDispatch();
-
-
       const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-       const name = e.target.name;
-       dispatch (loginAction({
-           [name]: e.target.value
+       dispatch (loginAction.changeData({
+           [e.target.name]: e.target.value
        }));
       }
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
-        
+        dispatch(loginAction.login());
       }
 
 
