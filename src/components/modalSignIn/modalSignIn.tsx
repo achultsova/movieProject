@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Container, Form, Button, Modal } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -9,17 +9,30 @@ const ModalSignIn: FC<{show: boolean, handleClose: () => void}> = ({show, handle
 
     const dispatch = useDispatch();
 
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
+    
+    const [login, setLogin] = useState({
+        email: "",
+        password: ""
+    })
+
 
       const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-       const name = e.target.name;
-       dispatch (loginAction({
-           [name]: e.target.value
-       }));
+    //    const name = e.target.name;
+       setLogin ({
+           ...login,
+           [e.target.name]: e.target.value,
+
+       })
       }
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
+        dispatch (loginAction.login({
+            email: login.email,
+            password: login.password
+        }));
         
       }
 

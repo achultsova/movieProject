@@ -1,30 +1,41 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
+// import { createStore, applyMiddleware, compose } from "redux";
+// import thunk from "redux-thunk";
 
-import loginReducer from "../reducers/loginReducer";
+// import loginReducer from "../reducers/loginReducer";
 
+import { createStore, applyMiddleware } from 'redux' 
+import thunkMiddleware from 'redux-thunk' 
 
-let middleware: Array<any> = [thunk];
+import rootReducer from "../reducers";
+ 
 
-let configStore: any = applyMiddleware(...middleware);
+const composedEnhancer = applyMiddleware(thunkMiddleware)
+ 
+// The store now has the ability to accept thunk functions in dispatch 
+const store = createStore(rootReducer, composedEnhancer) 
+export default store
 
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
-}
+// let middleware: any  = thunk;
 
-const composeEnhancers =  compose;
+// let configStore: any = applyMiddleware(...middleware);
 
-if (process.env.NODE_ENV === "development") {
-  middleware = [...middleware];
-  configStore = composeEnhancers(applyMiddleware(...middleware));
-}
+// declare global {
+//   interface Window {
+//     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+//   }
+// }
 
-const initialState: any = {};
+// const composeEnhancers =  compose;
 
-const store = createStore(loginReducer, initialState, configStore);
+// if (process.env.NODE_ENV === "development") {
+//   middleware = [...middleware];
+//   configStore = composeEnhancers(applyMiddleware(...middleware));
+// }
 
-export type RootStore = ReturnType<typeof loginReducer>;
+// const initialState: any = {};
 
-export default store;
+// const store = createStore(loginReducer, initialState, configStore);
+
+// export type RootStore = ReturnType<typeof loginReducer>;
+
+// export default store;
