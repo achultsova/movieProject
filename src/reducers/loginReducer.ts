@@ -6,10 +6,6 @@ type stateProps = {
     loading: boolean
 }
 
-interface IformData {
-    email: string,
-    password: string,
-}
 
 type actionProps = {
     type: string;
@@ -34,13 +30,14 @@ const loginReducer = (
         password: action.payload.password,
         loading: true,
       };
-    case actionTypes.LOGIN_SUCCESS:
-        const formData = { email: state.email, password: state.password }
-        localStorage.setItem('loginInfo', formData<IformData>)  
+    case actionTypes.LOGIN_SUCCESS: {
+        const formData = { email: state.email, password: state.password, token: 'hufirpusdnp89p4587n' }
+        localStorage.setItem('loginInfo', JSON.stringify(formData))  
         return {
           ...state,
           loading: false,
         };
+      }
     
     
       default:
