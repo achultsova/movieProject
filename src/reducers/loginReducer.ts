@@ -3,7 +3,8 @@ import * as actionTypes from "../types/loginTypes"
 type stateProps = {
     email: string;
     password: string;
-    loading: boolean
+    loading: boolean;
+    isAuthorized: boolean
 }
 
 
@@ -15,7 +16,8 @@ type actionProps = {
 const initialState: stateProps = {
 email: '',
 password: '',
-loading: false
+loading: false,
+isAuthorized: false
 }
 
 const loginReducer = (
@@ -28,6 +30,7 @@ const loginReducer = (
 				...state,
 				...action.payload,
 				loading: true,
+        isAuthorized: true
 			};
 		}
 		case actionTypes.LOGIN_SUCCESS: {
