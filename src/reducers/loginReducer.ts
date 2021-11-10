@@ -30,7 +30,6 @@ const loginReducer = (
 				...state,
 				...action.payload,
 				loading: true,
-        isAuthorized: true
 			};
 		}
 		case actionTypes.LOGIN_SUCCESS: {
@@ -39,6 +38,7 @@ const loginReducer = (
 			return {
 				...state,
 				loading: false,
+        isAuthorized: true
 			};
 		}
     

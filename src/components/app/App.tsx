@@ -14,6 +14,7 @@ import PrimeSchedule from '../primeSchedule/primeSchedule';
 import Footer from '../footer/footer';
 import Registration from '../registration/registration';
 import PersonalAccount from '../personalAccount/personalAccount';
+import PrivateRoute from '../../privateRoute';
 
 
 const App: FC = () => (
@@ -29,7 +30,7 @@ const App: FC = () => (
                 <Route path = "/collections" component = {Collections} />
                 <Route path = "/primeSchedule" component = {PrimeSchedule} />
                 <Route path = "/registration" component = {Registration} />
-                <Route path = "/account" component = {PersonalAccount} />
+                <PrivateRoute path = "/account" component = {PersonalAccount} />
             </Switch>
             <Footer />
         </Router>

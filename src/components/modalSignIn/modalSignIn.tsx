@@ -9,15 +9,6 @@ const ModalSignIn: FC<{show: boolean, handleClose: () => void}> = ({show, handle
 
     const dispatch = useDispatch();
 
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    
-    // const [login, setLogin] = useState({
-    //     email: "",
-    //     password: ""
-    // })
-
-
       const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch (loginAction.changeData({
             [e.target.name]: e.target.value

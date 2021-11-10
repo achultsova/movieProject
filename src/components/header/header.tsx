@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap'
 import './header.scss'
 import { Link } from 'react-router-dom'
-import { useSelector, shallowEqual } from 'react-redux'
+import { useSelector } from 'react-redux'
 import logo from './icons/logo.svg'  
 import ModalSignIn from '../modalSignIn/modalSignIn'
 import { RootStore } from '../../store/store'
@@ -10,7 +10,7 @@ import { RootStore } from '../../store/store'
 
 
 const Header: FC = () => {   
-    const isAuthorized = useSelector((state: RootStore) => state.isAuthorized, shallowEqual) || [];
+    const isAuthorized = useSelector((state: RootStore) => state.isAuthorized);
     
     const [show, setShow] = useState (false);
     const handleShow = () => setShow(true);
@@ -42,15 +42,15 @@ return (
                         className = "ms-auto" /> 
                     </Form>
                     {isAuthorized ?
-                    ( <Nav>  
+                    ( <Nav>
+                        <Button style = {{'margin': '10px'}} variant = "warning" className = "mr-2" href ='/account'>Личный кабинет</Button>
+                    </Nav>  
+                    
+                    ) :
+                    (<Nav>  
                         <Button style = {{'margin': '10px'}} variant = "light" className = "mr-2" onClick = {handleShow}> Вход </Button>
                         <Button style = {{'margin': '10px'}} variant = "warning" className = "mr-2" href= "/registration">Регистрация</Button>
                     </Nav>
-                    
-                    ) :
-                    (<Nav>
-                        <Button style = {{'margin': '10px'}} variant = "warning" className = "mr-2" href ='/account'>Личный кабинет</Button>
-                    </Nav>  
                     )
                     }
                     
