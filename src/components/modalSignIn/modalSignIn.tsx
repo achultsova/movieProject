@@ -28,6 +28,10 @@ return (
         </Modal.Header>
         <Modal.Body>
             <Form  onSubmit = { handleSubmit } style = {{marginBottom: "10px"}}> 
+            <Form.Group controlId = "fromBasicEmail" style= {{marginBottom: "10px"}}>
+                    <Form.Label>Логин:</Form.Label>
+                    <Form.Control name="username" placeholder = "Укажите Ваш логин" onChange = {handleChange} />
+                </Form.Group>
                 <Form.Group controlId = "fromBasicEmail" style= {{marginBottom: "10px"}}>
                     <Form.Label>Email адрес:</Form.Label>
                     <Form.Control name="email" placeholder = "Укажите Ваш email" onChange = {handleChange} />

@@ -16,34 +16,35 @@ const Header: FC = () => {
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
-
+   
      
 return (
     <div className = "header">
-            <Navbar fixed = "top" collapseOnSelect expand = "md" style = {{backgroundColor: '#232323'}}  variant = "dark"  >
-                <Container style= {{display: 'flex', justifyContent: 'space-between'}}>
+            <Navbar fixed="top" collapseOnSelect expand="md" style={{backgroundColor: '#232323'}}  variant="dark"  >
+                <Container style={{display: 'flex', justifyContent: 'space-between'}}>
                 <Navbar.Brand href = "/">
-                     <img src = { logo } height = "55px" width = "217px"  alt = "logo" />
+                     <img src={ logo } height="55px" width="217px"  alt="logo" />
                       </Navbar.Brand> 
                 <Navbar.Toggle aria-controls = "responsive-navbar-nav" />
                 <Navbar.Collapse id = "responsive-navbar-nav">
                     <Nav className = "mr-auto" style={{marginRight: "70px"}}>
-                        <Nav.Item > <Nav.Link> <Link to = "/films" style= {{color: 'white'}}>Фильмы</Link></Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link> <Link to ="/series" style= {{color: 'white'}}> Сериалы</Link></Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link> <Link to ="/cartoons" style= {{color: 'white'}}>Мультфильмы</Link> </Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link><Link to ="/shows" style= {{color: 'white'}}>Шоу</Link></Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link><Link to ="/collections" style= {{color: 'white'}}>Коллекции</Link></Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link><Link to ="/primeSchedule" style= {{color: 'white'}}>График кинопремьер</Link></Nav.Link> </Nav.Item>
+                        <Nav.Item > <Nav.Link> <Link to = "/films" style={{color: 'white'}}>Фильмы</Link></Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link> <Link to ="/series" style={{color: 'white'}}> Сериалы</Link></Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link> <Link to ="/cartoons" style={{color: 'white'}}>Мультфильмы</Link> </Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link><Link to ="/shows" style={{color: 'white'}}>Шоу</Link></Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link><Link to ="/collections" style={{color: 'white'}}>Коллекции</Link></Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link><Link to ="/primeSchedule" style={{color: 'white'}}>График кинопремьер</Link></Nav.Link> </Nav.Item>
                     </Nav>
                     <Form >
-                        <Form.Control style = {{'margin': '10px', 'padding': '8px, 0, 8px, 16px', width: "100%", maxWidth: "200px"}}
+                        <Form.Control style={{'margin': '10px', 'padding': '8px, 0, 8px, 16px', width: "100%", maxWidth: "160px"}}
                         type = "text"
                         placeholder = "поиск"
                         className = "ms-auto" /> 
                     </Form>
                     {isAuthorized ?
                     ( <Nav>
-                        <Button style = {{'margin': '10px'}} variant = "warning" className = "mr-2" href ='/account'>Личный кабинет</Button>
+                        <Button style={{'margin': '10px'}} variant = "warning" className = "mr-2" href ='/account'>Личный кабинет</Button>
+                    
                     </Nav>  
                     
                     ) :

@@ -1,6 +1,7 @@
 import * as actionTypes from "../types/loginTypes"
 
 type stateProps = {
+	username: string;
     email: string;
     password: string;
     loading: boolean;
@@ -14,6 +15,7 @@ type actionProps = {
 }
 
 const initialState: stateProps = {
+username: '',
 email: '',
 password: '',
 loading: false,
@@ -33,8 +35,10 @@ const loginReducer = (
 			};
 		}
 		case actionTypes.LOGIN_SUCCESS: {
-			const formData = { email: state.email, password: state.password, token: 'hufirpusdnp89p4587n' };
-			localStorage.setItem('loginInfo', JSON.stringify(formData));
+			localStorage.setItem('username', state.username);
+			localStorage.setItem('email', state.email);
+			localStorage.setItem('token', 'uhiovupomvsgvfoh');
+			
 			return {
 				...state,
 				loading: false,
