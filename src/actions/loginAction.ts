@@ -2,17 +2,18 @@ import { Dispatch } from 'redux'
 import * as actionTypes from "../types/loginTypes";
 
 const loginAction = {
-    login:  (action: any) => (dispatch: Dispatch<any>) => {
+    login: () => (dispatch: Dispatch<any>) => {
         dispatch ({
             type: actionTypes.LOGIN_SUBMIT,
-            payload: action.payload
         });
-    },
-    loginSuccess: () => (dispatch: Dispatch<any>) => {
         dispatch ({
             type: actionTypes.LOGIN_SUCCESS,
         })
-    },                                             
+    },
+    changeData: (data: any) => ({
+        type: actionTypes.LOGIN_DATA_CHANGE,
+        payload: data
+    }),                                             
 
 }
 
