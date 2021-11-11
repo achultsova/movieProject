@@ -44,9 +44,7 @@ return (
                     {isAuthorized ?
                     ( <Nav>
                         <Button style={{'margin': '10px'}} variant = "warning" className = "mr-2" href ='/account'>Личный кабинет</Button>
-                    
                     </Nav>  
-                    
                     ) :
                     (<Nav>  
                         <Button style = {{'margin': '10px'}} variant = "light" className = "mr-2" onClick = {handleShow}> Вход </Button>
