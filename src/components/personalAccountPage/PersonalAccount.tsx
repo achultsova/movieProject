@@ -4,6 +4,7 @@ import './personalAccount.scss'
 
 
 
+
 const PersonalAccount: FC = () => (
     <section className='profile_v'>
         <div className='personal_page' >
@@ -17,14 +18,19 @@ const PersonalAccount: FC = () => (
                     <a href='#'><img src={pencil} className='img_edit'></img>Редактировать</a>
                     </div>
                 </div>
-            {/* <div>
-                <ul className="profile_menu">
-                    <li>
-                        <a className=''>Смотреть позже</a>
+            <div>
+                <ul className="profile_options">
+                    <li >
+                        <a className=''>
+                            <img ></img>
+                            Смотреть позже
+                            
+                            </a>
+
                     </li>
 
                 </ul>
-            </div>     */}
+            </div>  
                 
             </div>    
         </div>

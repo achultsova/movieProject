@@ -39,6 +39,21 @@
     position: relative;
 }
 
+.profile_options li{
+    list-style: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    display: list-item;
+    text-align: -webkit-match-parent;
+    vertical-align: baseline;
+} 
+
+.profile_options a {
+    background-color: gray;
+    border-radius: 5px;
+    color: white;
+    
+}
 
 
 

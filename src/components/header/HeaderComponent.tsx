@@ -12,6 +12,7 @@ import { RootStore } from '../../store/store'
 const Header: FC = () => {   
     const isAuthorized = useSelector((state: RootStore) => state.isAuthorized);
     
+    
     const [show, setShow] = useState (false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
