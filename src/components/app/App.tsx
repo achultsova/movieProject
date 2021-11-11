@@ -4,16 +4,16 @@ import {
 BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home  from '../home/home'
-import Header from '../header/header';
+import Header from '../header/HeaderComponent';
 import Films from '../films/Films';
-import Series from '../series/series';
-import Show from '../show/show';
-import Cartoons from '../cartoons/cartoons';
+import Series from '../seriesPage/Series';
+import Show from '../showPage/Show';
+import Cartoons from '../cartoons/Сartoons';
 import Collections from '../collections/collections';
-import PrimeSchedule from '../primeSchedule/primeSchedule';
+import PrimeSchedule from '../primeSchedulePage/PrimeSchedule';
 import Footer from '../footer/Footer';
 import Registration from '../registration/registration';
-import PersonalAccount from '../personalAccount/personalAccount';
+import PersonalAccount from '../personalAccountPage/PersonalAccount';
 import PrivateRoute from '../../privateRoute';
 
 

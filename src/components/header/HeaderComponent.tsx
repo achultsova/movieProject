@@ -4,7 +4,7 @@ import './header.scss'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import logo from './icons/logo.svg'  
-import ModalSignIn from '../modalSignIn/ModalSignIn'
+import ModalSignIn from './modalSignIn/ModalSignIn'
 import { RootStore } from '../../store/store'
 
 
@@ -19,8 +19,8 @@ const Header: FC = () => {
    
      
 return (
-    <div className = "header">
-            <Navbar fixed="top" collapseOnSelect expand="md" style={{backgroundColor: '#232323'}}  variant="dark"  >
+    <div >
+            <Navbar fixed="top" collapseOnSelect expand="md" style={{backgroundColor: '#232323', height: '80px'}} className = "header"   >
                 <Container style={{display: 'flex', justifyContent: 'space-between'}}>
                 <Navbar.Brand href = "/">
                      <img src={ logo } height="55px" width="217px"  alt="logo" />
@@ -33,7 +33,7 @@ return (
                         <Nav.Item> <Nav.Link> <Link to ="/cartoons" style={{color: 'white'}}>Мультфильмы</Link> </Nav.Link> </Nav.Item>
                         <Nav.Item> <Nav.Link><Link to ="/shows" style={{color: 'white'}}>Шоу</Link></Nav.Link> </Nav.Item>
                         <Nav.Item> <Nav.Link><Link to ="/collections" style={{color: 'white'}}>Коллекции</Link></Nav.Link> </Nav.Item>
-                        <Nav.Item> <Nav.Link><Link to ="/primeSchedule" style={{color: 'white'}}>График кинопремьер</Link></Nav.Link> </Nav.Item>
+                        <Nav.Item> <Nav.Link><Link to ="/primeSchedule" style={{color: 'white'}}>Кинопремьеры</Link></Nav.Link> </Nav.Item>
                     </Nav>
                     <Form >
                         <Form.Control style={{'margin': '10px', 'padding': '8px, 0, 8px, 16px', width: "100%", maxWidth: "160px"}}

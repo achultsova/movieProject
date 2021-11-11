@@ -1,27 +1,27 @@
 import React, { FC } from 'react'
-import './comedies.scss'
+import './newFilms.scss'
 import { Card} from 'react-bootstrap'
 
-import movie1 from './comedyfilms/movie1.jpg'
-import movie2 from './comedyfilms/movie2.jpg'
-import movie3 from './comedyfilms/movie3.jpg'
-import movie4 from './comedyfilms/movie4.jpg'
-import movie5 from './comedyfilms/movie5.png'
-import movie6 from './comedyfilms/movie6.jpg'
+import movie1 from './newmovies/movie1.jpg'
+import movie2 from './newmovies/movie2.jpeg'
+import movie3 from './newmovies/movie3.jpg'
+import movie4 from './newmovies/movie4.jpg'
+import movie5 from './newmovies/movie5.jpg'
+import movie6 from './newmovies/movie6.jpg'
 
 interface Icard {
     image: string;
     link: string;
 }
 
-const Comedies: FC = () => {
+const NewFilms: FC = () => {
     const cardInfo: Icard[] = [
-        {image: movie1, link: "Отпетые мошенницы"},
-        {image: movie2, link: "За бортом"},
-        {image: movie3, link: "Девушки бывают разные"},
-        {image: movie4, link: "Удалить историю"},
-        {image: movie5, link: "Семейный бюджет"},
-        {image: movie6, link: "Родные"},
+        {image: movie1, link: "Дюна"},
+        {image: movie2, link: "Главный герой"},
+        {image: movie3, link: "Телохранитель жены киллера"},
+        {image: movie4, link: "Курорт"},
+        {image: movie5, link: "Веном 2"},
+        {image: movie6, link: "Не время умирать"},
     ]
 
     const RenderCard: FC<{ card: Icard }> = ({ card }) => (
@@ -35,11 +35,11 @@ const Comedies: FC = () => {
     )
 
     return (
-        <div className = "comedy_films">
-            <div className= "m_c">
-                <h3 className = "comedies">Комедии:</h3>
+        <div className = "new_films">
+             <div className= "m_c">
+                <h3 className = "new">Новинки:</h3>
                 <a style = {{'color': 'white'}} href = '#'>Смотреть все</a>
-            </div> 
+            </div>   
             <div className = "cards">
             {
                 cardInfo.map((card: Icard, index: number) => (<RenderCard card ={ card } key = {index} />))
@@ -52,4 +52,4 @@ const Comedies: FC = () => {
 };
     
 
-export default Comedies
+export default NewFilms

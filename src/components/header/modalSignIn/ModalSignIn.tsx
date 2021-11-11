@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
-import { Container, Form, Button, Modal } from 'react-bootstrap'
+import {  Form, Button, Modal } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import loginAction from '../../actions/loginAction'
+import loginAction from '../../../actions/loginAction'
+import './modalSignIn.scss'
 
 
 const ModalSignIn: FC<{show: boolean, handleClose: () => void}> = ({show, handleClose}) => {
@@ -22,31 +23,29 @@ const ModalSignIn: FC<{show: boolean, handleClose: () => void}> = ({show, handle
 
 
 return (
-        <Modal show = { show } onHide= { handleClose }>
+        <Modal show = { show } onHide= { handleClose } className='modal_sign_in'>
         <Modal.Header closeButton>
             <Modal.Title>Вход</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <Form  onSubmit = { handleSubmit } style = {{marginBottom: "10px"}}> 
-            <Form.Group controlId = "fromBasicEmail" style= {{marginBottom: "10px"}}>
+            <Form  onSubmit = { handleSubmit } > 
+            <Form.Group controlId = "fromBasicEmail" className='form_group'>
                     <Form.Label>Логин:</Form.Label>
                     <Form.Control name="username" placeholder = "Укажите Ваш логин" onChange = {handleChange} />
                 </Form.Group>
-                <Form.Group controlId = "fromBasicEmail" style= {{marginBottom: "10px"}}>
+                <Form.Group controlId = "fromBasicEmail" className='form_group'>
                     <Form.Label>Email адрес:</Form.Label>
                     <Form.Control name="email" placeholder = "Укажите Ваш email" onChange = {handleChange} />
                 </Form.Group>
-                <Form.Group controlId = "fromBasicPassword">
+                <Form.Group controlId = "fromBasicPassword" className='form_group'>
                     <Form.Label>Пароль:</Form.Label>
                     <Form.Control name="password" placeholder = "Укажите Ваш пароль" onChange = {handleChange} />
                 </Form.Group>
-                <Form.Group controlId = "fromBasicCheckbox">
+                <Form.Group controlId = "fromBasicCheckbox" className='form_group'>
                     <Form.Check type="checkbox" label = "Запомнить меня"/>
                 </Form.Group>
-                <Container style = {{display: "flex", justifyContent: "space-around"}}>
-                <Button type = "submit" variant = "dark">Вход</Button>
+                <Button type = "submit" className='btn_submit' variant = "dark">Вход</Button>
                 <Link to = "/registration" style = {{color: 'black'}} onClick= { handleClose }>Еще нет аккаунта?</Link>
-            </Container>
             </Form>   
         </Modal.Body>
     </Modal>
