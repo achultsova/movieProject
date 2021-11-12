@@ -11,8 +11,14 @@ import logout from './icons/logout.svg'
 
 
 
-const PersonalAccount: FC = () => (
-    <section className='profile_v'>
+const PersonalAccount: FC = () => {
+    
+    const handleClick = () => {
+        localStorage.removeItem('token')
+    }
+
+    return(
+        <section className='profile_v'>
         <div className='personal_page' >
             <div className='container'>
                 <div className='profile_menu'>
@@ -61,14 +67,13 @@ const PersonalAccount: FC = () => (
             <div>
                 <a href='#' className='change_password'>
                   <div className='change_img'><img src={logout}></img></div> 
-                  <div className='change_text'>Выйти</div> 
+                  <div className='change_text'><button className='btn_logout' onClick={handleClick}>Выйти</button></div> 
                 </a>
             </div>  
             </div>    
         </div>
     </section>
-   
-    
-)
+    )
+}
 
 export default PersonalAccount

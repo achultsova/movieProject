@@ -17,6 +17,7 @@ import PersonalAccount from '../personalAccountPage/PersonalAccount';
 import PrivateRoute from '../../privateRoute';
 
 
+
 const App: FC = () => (
     <div className="App">
         <Router> 

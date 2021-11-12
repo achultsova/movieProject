@@ -1,3 +1,4 @@
+
 import * as actionTypes from "../types/loginTypes"
 
 type stateProps = {
@@ -24,6 +25,8 @@ authenticated: false,
 token: ''
 }
 
+
+
 const loginReducer = (
     state: stateProps = initialState,
     action: actionProps
@@ -44,7 +47,7 @@ const loginReducer = (
 			return {
 				...state,
 				loading: false,
-				authenticated: true
+        authenticated: true
 			};
 		}
     
