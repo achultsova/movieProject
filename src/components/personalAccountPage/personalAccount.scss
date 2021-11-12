@@ -18,7 +18,7 @@
     justify-content: space-between;
     align-items: center;
     top: 60px;
-    
+    margin-bottom: 50px;
 }
 
 .img_edit {
@@ -39,6 +39,13 @@
     position: relative;
 }
 
+.profile_options {
+    vertical-align: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+}
+
 .profile_options li{
     list-style: none;
     box-sizing: border-box;
@@ -46,14 +53,67 @@
     display: list-item;
     text-align: -webkit-match-parent;
     vertical-align: baseline;
+    width: 25%;
+    cursor: pointer;
+    padding-left: 12px;
+    padding-right: 12px;
 } 
 
 .profile_options a {
-    background-color: gray;
+    background-color: #545454;
     border-radius: 5px;
     color: white;
-    
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
 }
+
+.options_img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background: no-repeat 50% 50%;
+    // background-image: url(./icons/tile.svg);
+}
+
+.options_text {
+    font-size: 22px;
+    line-height: 20px;
+    font-weight: 500;
+    font-style: normal;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.change_password{
+    display: flex;
+    justify-content: start;
+    text-decoration: none;
+    padding-bottom: 20px;
+}
+
+.change_img img {
+    height: 22px;
+    width: 22px;
+    flex: 0 0 16px;
+    top: 2px;
+    margin-right: 8px;
+}
+
+.change_text {
+    color: white;
+    font-size: 18px;
+}
+
+
 
 
 
