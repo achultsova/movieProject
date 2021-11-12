@@ -10,7 +10,7 @@ import { RootStore } from '../../store/store'
 
 
 const Header: FC = () => {   
-    const isAuthorized = useSelector((state: RootStore) => state.isAuthorized);
+    const authenticated = useSelector((state: RootStore) => state.authenticated);
     
     
     const [show, setShow] = useState (false);
@@ -42,7 +42,7 @@ return (
                         placeholder = "поиск"
                         className = "ms-auto" /> 
                     </Form>
-                    {isAuthorized ?
+                    {authenticated ?
                     ( <Nav>
                         <Button style={{'margin': '10px'}} variant = "warning" className = "mr-2" href ='/account'>Личный кабинет</Button>
                     </Nav>  

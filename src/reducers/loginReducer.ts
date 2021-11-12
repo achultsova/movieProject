@@ -5,7 +5,8 @@ type stateProps = {
     email: string;
     password: string;
     loading: boolean;
-    isAuthorized: boolean
+    authenticated: boolean;
+	token: string
 }
 
 
@@ -19,7 +20,8 @@ username: '',
 email: '',
 password: '',
 loading: false,
-isAuthorized: false
+authenticated: false,
+token: ''
 }
 
 const loginReducer = (
@@ -42,7 +44,7 @@ const loginReducer = (
 			return {
 				...state,
 				loading: false,
-        isAuthorized: true
+				authenticated: true
 			};
 		}
     
