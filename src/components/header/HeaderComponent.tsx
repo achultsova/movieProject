@@ -1,10 +1,9 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap'
 import './header.scss'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import logo from './icons/logo.svg'  
-import ModalSignIn from './modalSignIn/ModalSignIn'
 import { RootStore } from '../../store/store'
 
 
@@ -12,12 +11,8 @@ import { RootStore } from '../../store/store'
 const Header: FC = () => {   
     const authenticated = useSelector((state: RootStore) => state.authenticated);
     
-    
-    const [show, setShow] = useState (false);
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
 
-   
+
      
 return (
     <div >
@@ -48,7 +43,8 @@ return (
                     </Nav>  
                     ) :
                     (<Nav>  
-                        <Button style = {{'margin': '10px'}} variant = "light" className = "mr-2" onClick = {handleShow}> Вход </Button>
+                        {/* <Button style = {{'margin': '10px'}} variant = "light" className = "mr-2" > Вход </Button> */}
+                        <Link to={(location: Location) => `${location.pathname === '/' ? '' : location.pathname}/login`}><Button style = {{'margin': '10px'}} variant = "light" className = "mr-2"> Вход </Button> </Link>
                         <Button style = {{'margin': '10px'}} variant = "warning" className = "mr-2" href= "/registration">Регистрация</Button>
                     </Nav>
                     )
@@ -57,7 +53,6 @@ return (
                 </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <ModalSignIn show= {show} handleClose= {handleClose}/>
         </div>
 )
 }

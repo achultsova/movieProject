@@ -14,8 +14,14 @@ const loginAction = {
         type: actionTypes.LOGIN_DATA_CHANGE,
         payload: data
     }),                                             
-
+    logout: () => (dispatch: Dispatch<any>) => {
+        dispatch ({
+            type: actionTypes.LOGOUT,
+        });
+    }
 }
+
+
 
 
 

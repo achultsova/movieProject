@@ -1,25 +1,33 @@
 import React, { FC } from 'react'
 import {  Form, Button, Modal } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+
+import { Link, useHistory } from 'react-router-dom'
 import loginAction from '../../../actions/loginAction'
 import './modalSignIn.scss'
 
 
-const ModalSignIn: FC<{show: boolean, handleClose: () => void}> = ({show, handleClose}) => {
+const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
 
-    const dispatch = useDispatch();
+    const history = useHistory();
 
-      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const dispatch = useDispatch();                                                                                                                                                                                            
+
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {               
         dispatch (loginAction.changeData({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value                                                 
         }))
       }
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        e.preventDefault();                          
         dispatch(loginAction.login());
       }
+
+      const handleClose = () => {
+          history.push(history.location.pathname.replace('/login',''));
+
+        }
 
 
 return (

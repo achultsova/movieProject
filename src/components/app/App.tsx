@@ -14,6 +14,7 @@ import PrimeSchedule from '../primeSchedulePage/PrimeSchedule';
 import Footer from '../footer/Footer';
 import Registration from '../registration/registration';
 import PersonalAccount from '../personalAccountPage/PersonalAccount';
+import ModalSignIn from '../header/modalSignIn/ModalSignIn';
 import PrivateRoute from '../../privateRoute';
 
 
@@ -23,7 +24,6 @@ const App: FC = () => (
         <Router> 
         <Header />
             <Switch>
-                <Route exact path = "/" component = {Home} />
                 <Route path = "/films" component = {Films} />
                 <Route path = "/series" component = {Series} />
                 <Route path = "/shows" component = {Show} />
@@ -31,9 +31,16 @@ const App: FC = () => (
                 <Route path = "/collections" component = {Collections} />
                 <Route path = "/primeSchedule" component = {PrimeSchedule} />
                 <Route path = "/registration" component = {Registration} />
+                {/* <Route path="/login" component= {ModalSignIn}/> */}
                 <PrivateRoute path = "/account" component = {PersonalAccount} />
+                <Route path = "/" component = {Home} />
             </Switch>
             <Footer />
+            <Switch>
+                <Route path={`*/login`}>
+                    <ModalSignIn show={true} />
+                </Route>
+            </Switch>
         </Router>
     </div>
 )

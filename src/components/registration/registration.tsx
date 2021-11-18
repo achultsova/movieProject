@@ -14,6 +14,14 @@ const Registration: FC = () => (
                 <Form.Label >Email адрес:</Form.Label>
                 <Form.Control type="email" name = "email"  placeholder = "Укажите Ваш email"/>
             </Form.Group>
+            <Form.Group controlId = "fromBasicName" style= {{marginBottom: "10px", color: "white", width: "500px"}}>
+                <Form.Label >Телефон:</Form.Label>
+                <Form.Control type="text" name = "mobile"  placeholder = "Укажите Ваш телефон"/>
+            </Form.Group>
+            <Form.Group controlId = "fromBasicName" style= {{marginBottom: "10px", color: "white", width: "500px"}}>
+                <Form.Label >Возраст:</Form.Label>
+                <Form.Control type="text" name = "age"  placeholder = "Укажите Ваш возраст"/>
+            </Form.Group>
             <Form.Group controlId = "fromBasicPassword" style={{color: "white", marginBottom: "10px", width: "500px"}}>
                 <Form.Label>Пароль:</Form.Label>
                 <Form.Control type="password" name = "password"  placeholder = "Укажите Ваш пароль"/>

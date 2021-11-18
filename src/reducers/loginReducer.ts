@@ -40,6 +40,7 @@ const loginReducer = (
 			};
 		}
 		case actionTypes.LOGIN_SUCCESS: {
+
 			localStorage.setItem('username', state.username);
 			localStorage.setItem('email', state.email);
 			localStorage.setItem('token', 'uhiovupomvsgvfoh');
@@ -47,11 +48,16 @@ const loginReducer = (
 			return {
 				...state,
 				loading: false,
-        authenticated: true
+        		authenticated: true
 			};
 		}
-    
-    
+		case actionTypes.LOGIN_FAILURE: {
+			return {}
+		}
+		case actionTypes.LOGOUT: {
+			localStorage.removeItem('token')
+			return {}
+		}
       default:
         return state;
     }  

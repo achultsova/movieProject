@@ -1,4 +1,6 @@
 import React, { FC } from 'react'
+import { useDispatch } from 'react-redux'
+import loginAction from '../../actions/loginAction'
 import pencil from './icons/pencil.svg'
 import './personalAccount.scss'
 import tile from './icons/tile.svg'
@@ -12,9 +14,11 @@ import logout from './icons/logout.svg'
 
 
 const PersonalAccount: FC = () => {
+
+    const dispatch = useDispatch(); 
     
     const handleClick = () => {
-        localStorage.removeItem('token')
+        dispatch(loginAction.logout());
     }
 
     return(
