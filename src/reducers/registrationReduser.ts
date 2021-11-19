@@ -7,7 +7,7 @@ type stateProps = {
     age: number;
     password: string;
 	token: string;
-    formSubmitted: boolean
+    registering: boolean
 }
 
 type actionProps = {
@@ -22,7 +22,7 @@ const initialState: stateProps = {
     age: 22,
     password: '',
     token: '',
-    formSubmitted: false
+    registering: false
     }
 
 const registrationReducer = (
@@ -30,18 +30,18 @@ const registrationReducer = (
     action: actionProps
 ) => {
     switch (action.type) {
-        case actionTypes.ADD_USER: {
+        case actionTypes.REGISTER_REQUEST: {
             return {
                 ...state,
-            formSubmitted: false    
+            registering: true  
 
             }
         }
-        case actionTypes.FORM_SUBMITION_STATUS: {
-            return {
-                ...state,
-                formSubmitted: action.payload.status
-            }
+        case actionTypes.REGISTER_SUCCESS: {
+            return {}
+        }
+        case actionTypes.REGISTER_FAILURE: {
+            return {}
         }
         default:
       return state;

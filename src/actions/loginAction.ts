@@ -7,8 +7,9 @@ const loginAction = {
             type: actionTypes.LOGIN_SUBMIT,
         });
         dispatch ({
-            type: actionTypes.LOGIN_SUCCESS,
+            type: actionTypes.LOGIN_SUCCESS, 
         })
+        
     },
     changeData: (data: any) => ({
         type: actionTypes.LOGIN_DATA_CHANGE,

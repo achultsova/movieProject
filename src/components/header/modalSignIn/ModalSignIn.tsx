@@ -22,6 +22,24 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();                          
         dispatch(loginAction.login());
+         return (data: any) => {
+            fetch ('http://localhost:8080/login',{
+            credentials: "include",
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user: {
+                    username: data.username,
+                    email: data.email,
+                    password: data.password
+                }
+            })
+        })
+        .then(resp => resp.json())
+        }
+        
       }
 
       const handleClose = () => {
