@@ -1,30 +1,29 @@
 
 import * as actionTypes from "../types/loginTypes"
 
-type stateProps = {
-	username: string;
-    email: string;
-    password: string;
-    loading: boolean;
-    authenticated: boolean;
-	token: string
+export type stateProps = {
+	username?: string;
+    email?: string;
+    password?: string;
+    loading?: boolean;
+    authenticated?: boolean
 }
-
 
 type actionProps = {
     type: string;
-    payload?: any
+    user?: any
 }
 
-const initialState: stateProps = {
-username: '',
-email: '',
-password: '',
-loading: false,
-authenticated: false,
-token: ''
-}
+// let initialState: stateProps = {
+// username: '',
+// email: '',
+// password: '',
+// loading: false,
+// authenticated: false
+// }
 
+const user  = JSON.parse(localStorage.getItem('user') || '{}');
+const initialState: stateProps = user ? { username: '', email: '', password: '', loading: true, authenticated: true } : {};
 
 
 const loginReducer = (
@@ -32,22 +31,18 @@ const loginReducer = (
     action: actionProps
 ) => {
   switch (action.type) {
-		case actionTypes.LOGIN_DATA_CHANGE: {
+		case actionTypes.LOGIN_SUBMIT: {
 			return {
 				...state,
-				...action.payload,
+				user: action.user,
 				loading: true,
 			};
 		}
 		case actionTypes.LOGIN_SUCCESS: {
-
-			localStorage.setItem('username', state.username);
-			localStorage.setItem('email', state.email);
-			localStorage.setItem('token', 'uhiovupomvsgvfoh');
-			
 			return {
 				...state,
-				loading: false,
+				user: action.user,
+				loading: true,
         		authenticated: true
 			};
 		}
@@ -55,7 +50,6 @@ const loginReducer = (
 			return {}
 		}
 		case actionTypes.LOGOUT: {
-			localStorage.removeItem('token')
 			return {}
 		}
       default:

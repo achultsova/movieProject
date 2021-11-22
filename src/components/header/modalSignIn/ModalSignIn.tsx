@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import {  Form, Button, Modal } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+
 
 import { Link, useHistory } from 'react-router-dom'
 import loginAction from '../../../actions/loginAction'
@@ -9,45 +9,41 @@ import './modalSignIn.scss'
 
 const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
 
-    const history = useHistory();
+    interface Istate {
+        username?: string;
+        email?: string;
+        password?: string
+    }
 
-    const dispatch = useDispatch();                                                                                                                                                                                            
+    const [state, setState] = useState<Istate> ({
+        username: "",
+        email: "",
+        password: ""
+      });
+
+    const history = useHistory();                                                                                                                                                                                      
 
       const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {               
-        dispatch (loginAction.changeData({
-            [e.target.name]: e.target.value                                                 
-        }))
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+          });
+          console.log(state);
       }
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();                          
-        dispatch(loginAction.login());
-         return (data: any) => {
-            fetch ('http://localhost:8080/login',{
-            credentials: "include",
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                user: {
-                    username: data.username,
-                    email: data.email,
-                    password: data.password
-                }
-            })
-        })
-        .then(resp => resp.json())
+        e.preventDefault();   
+        // setState({submitted: true}) ;
+        const {username, email, password } = state;
+        if (username && email && password) {   
+            loginAction.login(username, email, password)
         }
-        
-      }
+      }   
 
       const handleClose = () => {
           history.push(history.location.pathname.replace('/login',''));
 
         }
-
-
 return (
         <Modal show = { show } onHide= { handleClose } className='modal_sign_in'>
         <Modal.Header closeButton>
