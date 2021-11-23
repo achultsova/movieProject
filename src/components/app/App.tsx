@@ -31,7 +31,6 @@ const App: FC = () => (
                 <Route path = "/collections" component = {Collections} />
                 <Route path = "/primeSchedule" component = {PrimeSchedule} />
                 <Route path = "/registration" component = {Registration} />
-                {/* <Route path="/login" component= {ModalSignIn}/> */}
                 <PrivateRoute path = "/account" component = {PersonalAccount} />
                 <Route path = "/" component = {Home} />
             </Switch>

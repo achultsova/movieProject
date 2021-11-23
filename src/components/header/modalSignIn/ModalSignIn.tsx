@@ -1,27 +1,30 @@
 import React, { FC, useState } from 'react'
 import {  Form, Button, Modal } from 'react-bootstrap'
-
-
 import { Link, useHistory } from 'react-router-dom'
-import loginAction from '../../../actions/loginAction'
+// import loginAction from '../../../actions/loginAction'
 import './modalSignIn.scss'
+import axios, { AxiosResponse } from 'axios'
+// import cookie from 'react-cookie'
 
 
 const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
 
     interface Istate {
-        username?: string;
         email?: string;
         password?: string
     }
 
     const [state, setState] = useState<Istate> ({
-        username: "",
         email: "",
         password: ""
       });
 
-    const history = useHistory();                                                                                                                                                                                      
+    const history = useHistory();  
+                                                                                                                                                                                      
+    const data = {
+        email: state.email,
+        password: state.password
+    }
 
       const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {               
         setState({
@@ -32,13 +35,20 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
       }
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();   
-        // setState({submitted: true}) ;
-        const {username, email, password } = state;
-        if (username && email && password) {   
-            loginAction.login(username, email, password)
+          debugger
+        e.preventDefault(); 
+        axios.post('http://localhost:8080/login', data, {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                }, 
+            })
+            .then ((res: AxiosResponse) => {
+                console.log(res.data)    
+            })
+       
         }
-      }   
+       
 
       const handleClose = () => {
           history.push(history.location.pathname.replace('/login',''));
@@ -51,10 +61,6 @@ return (
         </Modal.Header>
         <Modal.Body>
             <Form  onSubmit = { handleSubmit } > 
-            <Form.Group controlId = "fromBasicEmail" className='form_group'>
-                    <Form.Label>Логин:</Form.Label>
-                    <Form.Control name="username" placeholder = "Укажите Ваш логин" onChange = {handleChange} />
-                </Form.Group>
                 <Form.Group controlId = "fromBasicEmail" className='form_group'>
                     <Form.Label>Email адрес:</Form.Label>
                     <Form.Control name="email" placeholder = "Укажите Ваш email" onChange = {handleChange} />

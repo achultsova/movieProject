@@ -2,7 +2,6 @@
 import * as actionTypes from "../types/loginTypes"
 
 export type stateProps = {
-	username?: string;
     email?: string;
     password?: string;
     loading?: boolean;
@@ -23,7 +22,7 @@ type actionProps = {
 // }
 
 const user  = JSON.parse(localStorage.getItem('user') || '{}');
-const initialState: stateProps = user ? { username: '', email: '', password: '', loading: true, authenticated: true } : {};
+const initialState: stateProps = user ? {  email: '', password: '', loading: true, authenticated: true } : {};
 
 
 const loginReducer = (
@@ -31,7 +30,7 @@ const loginReducer = (
     action: actionProps
 ) => {
   switch (action.type) {
-		case actionTypes.LOGIN_SUBMIT: {
+		case actionTypes.LOGIN_REQUEST: {
 			return {
 				...state,
 				user: action.user,

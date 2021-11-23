@@ -6,14 +6,14 @@ import alertActions from './alertActions';
 
 
 const loginAction: any = {
-    login: (username: string, email: string, password: string) => (dispatch: Dispatch<any>) => {
+    login: ( email: string, password: string) => (dispatch: Dispatch<any>) => {
 
-        function submit(user: any) { return { type: actionTypes.LOGIN_SUBMIT, user } }
+        function request(user: any) { return { type: actionTypes.LOGIN_REQUEST, user } }
         function success(user: any) { return { type: actionTypes.LOGIN_SUCCESS, user } }
         function failure(error: any) { return { type: actionTypes.LOGIN_FAILURE, error } }
 
-        dispatch (submit({ username }))
-        loginService( username, email, password)
+        dispatch (request({ email }))
+        loginService( email, password)
             .then (
                 user => {
                     dispatch (success(user))             

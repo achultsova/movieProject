@@ -1,24 +1,69 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Form, Button } from 'react-bootstrap'
+import axios, { AxiosResponse } from 'axios'
+// import { useCookies } from 'react-cookie'
 
 const Registration: FC = () => {
 
-    
+    // const [cookies, setCookie ] = useCookies(['token']);
 
-    const handleChange = () => {
+    interface Istate {
+        username?: string;
+        email?: string;
+        mobile?: string;
+        age?: string;
+        password?: string;
+        passwordComfirm?: string
+    }
+
+    const [state, setState] = useState<Istate> ({
+        username: '',
+        email: '',
+        mobile:'',
+        age: '',
+        password: '',
+        passwordComfirm: ''
+      });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value
+          });
         console.log()
     }
 
+    const data = {
+        username: state.username,
+        email: state.email,
+        mobile: state.mobile,
+        age: state.age,
+        password: state.password,
+    }
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        debugger
         e.preventDefault();  
-        
+        if (state.password === state.passwordComfirm) {
+            axios.post('http://localhost:8080/registration', data,  {
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },       
+            })
+            .then ((res: AxiosResponse) => {
+                console.log(res.data)    
+            })
+        } else {
+                alert('Пароли не совпадают')
         }
+    }
     
 
     return (
         <Container style={{height: "900px"}}>
-       <h1 style= {{paddingTop:"120px", color: "white"}}>Регистрация:</h1>
+       <h1 style= {{paddingTop:"80px", color: "white"}}>Регистрация:</h1>
        <Form style = {{marginBottom: "10px"}} onSubmit= {handleSubmit} >
             <Form.Group controlId = "fromBasicName" style= {{marginBottom: "10px", color: "white", width: "500px"}}>
                 <Form.Label >Имя:</Form.Label>
@@ -40,9 +85,13 @@ const Registration: FC = () => {
                 <Form.Label>Пароль:</Form.Label>
                 <Form.Control type="password" name = "password"  placeholder = "Укажите Ваш пароль" onChange={handleChange}/>
             </Form.Group>
-            <Form.Group controlId = "fromBasicCheckbox">
-                <Form.Check type="checkbox" label = "Запомнить меня" style={{color:"white"}}/>
+            <Form.Group controlId = "fromBasicPassword" style={{color: "white", marginBottom: "10px", width: "500px"}}>
+                <Form.Label>Повторите пароль:</Form.Label>
+                <Form.Control type="password" name = "passwordComfirm"  placeholder = "Повторите Ваш пароль" onChange={handleChange}/>
             </Form.Group>
+            {/* <Form.Group controlId = "fromBasicCheckbox">
+                <Form.Check type="checkbox" label = "Запомнить меня" style={{color:"white"}}/>
+            </Form.Group> */}
         </Form>
         <Button variant = "dark" style={{marginBottom: "15px"}}>Зарегистрировать</Button>
         <p style={{color:"white"}}>Вернуться на <Link to="/" style={{color:"white"}}>главную</Link></p>
