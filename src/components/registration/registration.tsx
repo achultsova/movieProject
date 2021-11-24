@@ -34,17 +34,18 @@ const Registration: FC = () => {
         console.log()
     }
 
-    const data = {
-        username: state.username,
-        email: state.email,
-        mobile: state.mobile,
-        age: state.age,
-        password: state.password,
-    }
+    
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         debugger
         e.preventDefault();  
+        const data = {
+            username: state.username,
+            email: state.email,
+            mobile: state.mobile,
+            age: state.age,
+            password: state.password,
+        }
         if (state.password === state.passwordComfirm) {
             axios.post('http://localhost:8080/registration', data,  {
                 headers: {

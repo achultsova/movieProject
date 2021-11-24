@@ -4,7 +4,8 @@ import { Link, useHistory } from 'react-router-dom'
 // import loginAction from '../../../actions/loginAction'
 import './modalSignIn.scss'
 import axios, { AxiosResponse } from 'axios'
-// import cookie from 'react-cookie'
+
+import { useCookies} from 'react-cookie'
 
 
 const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
@@ -21,10 +22,7 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
 
     const history = useHistory();  
                                                                                                                                                                                       
-    const data = {
-        email: state.email,
-        password: state.password
-    }
+    const [cookies, setCookie] = useCookies(['token']);
 
       const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {               
         setState({
@@ -35,17 +33,29 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
       }
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-          debugger
         e.preventDefault(); 
+        const data = {
+            email: state.email,
+            password: state.password
+        }       
         axios.post('http://localhost:8080/login/', data, {
+                
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
                 }, 
             })
-            .then ((res: AxiosResponse) => {
-                console.log(res.data)    
+            
+            .then ((response: AxiosResponse) => {
+                if (response.status < 400) {
+                   console.log(response)
+                   console.log(response.data)
+                   localStorage.setItem('token', response.data)
+                } 
             })
+            
+           
+           
        
         }
        
