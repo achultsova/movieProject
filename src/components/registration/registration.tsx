@@ -92,9 +92,10 @@ const Registration: FC = () => {
             {/* <Form.Group controlId = "fromBasicCheckbox">
                 <Form.Check type="checkbox" label = "Запомнить меня" style={{color:"white"}}/>
             </Form.Group> */}
+            <Button type = "submit" className='btn_submit' variant = "dark" style={{marginBottom: "15px"}}>Зарегистрировать</Button>
+            <p style={{color:"white"}}>Вернуться на <Link to="/" style={{color:"white"}}>главную</Link></p>
         </Form>
-        <Button variant = "dark" style={{marginBottom: "15px"}}>Зарегистрировать</Button>
-        <p style={{color:"white"}}>Вернуться на <Link to="/" style={{color:"white"}}>главную</Link></p>
+        
     </Container>
     )
 }

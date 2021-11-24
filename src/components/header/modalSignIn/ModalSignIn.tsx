@@ -37,7 +37,7 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
           debugger
         e.preventDefault(); 
-        axios.post('http://localhost:8080/login', data, {
+        axios.post('http://localhost:8080/login/', data, {
                 headers: {
                     Accept: "application/json",
                     "Content-Type": "application/json",
