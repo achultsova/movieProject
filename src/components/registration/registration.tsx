@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Container, Form, Button } from 'react-bootstrap'
 import axios, { AxiosResponse } from 'axios'
 import { useCookies } from 'react-cookie'
@@ -18,6 +18,7 @@ const Registration: FC = () => {
     }
 
     const [, setCookie] = useCookies(['token']);
+    const history = useHistory(); 
 
     const [state, setState] = useState<Istate> ({
         username: '',
@@ -39,7 +40,6 @@ const Registration: FC = () => {
     
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        debugger
         e.preventDefault();  
         const data = {
             username: state.username,
@@ -48,6 +48,7 @@ const Registration: FC = () => {
             age: state.age,
             password: state.password,
         }
+        localStorage.setItem('username', state.username as string)
         if (state.password === state.passwordComfirm) {
             axios.post('http://localhost:8080/registration', data,  {
                 headers: {
@@ -59,9 +60,15 @@ const Registration: FC = () => {
                 console.log(res.data)   
                 setCookie('token', res.data) 
             })
+            .then (() => {
+                history.push("/account");
+                window.location.reload();
+              })
+           
         } else {
                 alert('Пароли не совпадают')
         }
+        
     }
     
 

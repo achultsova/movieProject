@@ -1,11 +1,13 @@
 import React, { FC } from 'react'
-import { useDispatch } from 'react-redux'
-import loginAction from '../../actions/loginAction'
+import Cookies from 'universal-cookie'
+import { useHistory } from 'react-router-dom'
+// import { useDispatch } from 'react-redux'
+// import loginAction from '../../actions/loginAction'
 import pencil from './icons/pencil.svg'
 import './personalAccount.scss'
 import tile from './icons/tile.svg'
 import bell from './icons/bell.svg'
-import history from './icons/history.svg'
+import watches from './icons/history.svg'
 import heart from './icons/heart.svg'
 import change from './icons/change.svg'
 import logout from './icons/logout.svg'
@@ -15,10 +17,15 @@ import logout from './icons/logout.svg'
 
 const PersonalAccount: FC = () => {
 
-    const dispatch = useDispatch(); 
-    
+    // const dispatch = useDispatch(); 
+    const cookies = new Cookies();
+    const history = useHistory();
+
     const handleClick = () => {
-        dispatch(loginAction.logout());
+        cookies.remove('token')
+        history.push("/account");
+        window.location.reload();
+        // dispatch(loginAction.logout());
     }
 
     return(
@@ -28,7 +35,6 @@ const PersonalAccount: FC = () => {
                 <div className='profile_menu'>
                     <div className='profile_menu_info'>
                         <div> <h1 style={{paddingTop:"120px", color: "white"}}>{localStorage.getItem('username')}</h1> </div>
-                        <div> <h5 style={{color:'gray'}}>{localStorage.getItem('email')}</h5> </div> 
                     </div>
                     <div className='profile_menu_item'>
                     <a href='#'><img src={pencil} className='img_edit'></img>Редактировать</a>
@@ -50,7 +56,7 @@ const PersonalAccount: FC = () => {
                     </li>
                     <li >
                         <a href="#">
-                            <div><img src={history} className='options_img'></img></div>
+                            <div><img src={watches} className='options_img'></img></div>
                             <div className='options_text'>Просмотры</div>                        
                         </a>
                     </li>

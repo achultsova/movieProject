@@ -4,19 +4,18 @@ import { Link, useHistory } from 'react-router-dom'
 // import loginAction from '../../../actions/loginAction'
 import './modalSignIn.scss'
 import axios, { AxiosResponse } from 'axios'
-
 import { useCookies} from 'react-cookie'
 
 
 const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
 
     interface Istate {
-        email?: string;
+        username?: string;
         password?: string
     }
 
     const [state, setState] = useState<Istate> ({
-        email: "",
+        username: "",
         password: ""
       });
 
@@ -28,16 +27,16 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
         setState({
             ...state,
             [e.target.name]: e.target.value
-          });
-          console.log(state);
+            });	    
       }
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); 
         const data = {
-            email: state.email,
+            esername: state.username,
             password: state.password
         }       
+        localStorage.setItem('username', state.username as string)
         axios.post('http://localhost:8080/login/', data, {
                 
                 headers: {
@@ -50,12 +49,16 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
                 if (response.status === 200) {
                    console.log(response)
                    console.log(response.data)
-                   localStorage.setItem('token', response.data)
                     setCookie('token', response.data)
-                    
-                } 
+                } else if ( response.status === 404 ){
+                    alert('Проверьте введенные данные')
+                }
             })
-            
+            .then()
+            .then (() => {
+                history.push("/account");
+                window.location.reload();
+              })
            
            
        
@@ -74,8 +77,8 @@ return (
         <Modal.Body>
             <Form  onSubmit = { handleSubmit } > 
                 <Form.Group controlId = "fromBasicEmail" className='form_group'>
-                    <Form.Label>Email адрес:</Form.Label>
-                    <Form.Control name="email" placeholder = "Укажите Ваш email" onChange = {handleChange} />
+                    <Form.Label>Имя:</Form.Label>
+                    <Form.Control name="username" placeholder = "Укажите Ваш username" onChange = {handleChange} />
                 </Form.Group>
                 <Form.Group controlId = "fromBasicPassword" className='form_group'>
                     <Form.Label>Пароль:</Form.Label>
