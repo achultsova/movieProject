@@ -1,8 +1,10 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const PrivateRoute = ({ component: Component, ...rest }: any) => {
-	const token = localStorage.getItem('token') || '';
+	const [ cookies] = useCookies(['token']);
+	const token = cookies.token || '';
 	return (
 		<Route {...rest} render={props => (
 			token ?

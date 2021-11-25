@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Form, Button } from 'react-bootstrap'
 import axios, { AxiosResponse } from 'axios'
-// import { useCookies } from 'react-cookie'
+import { useCookies } from 'react-cookie'
 
 const Registration: FC = () => {
 
@@ -16,6 +16,8 @@ const Registration: FC = () => {
         password?: string;
         passwordComfirm?: string
     }
+
+    const [, setCookie] = useCookies(['token']);
 
     const [state, setState] = useState<Istate> ({
         username: '',
@@ -54,7 +56,8 @@ const Registration: FC = () => {
                 },       
             })
             .then ((res: AxiosResponse) => {
-                console.log(res.data)    
+                console.log(res.data)   
+                setCookie('token', res.data) 
             })
         } else {
                 alert('Пароли не совпадают')

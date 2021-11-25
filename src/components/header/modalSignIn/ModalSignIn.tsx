@@ -22,7 +22,7 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
 
     const history = useHistory();  
                                                                                                                                                                                       
-    const [cookies, setCookie] = useCookies(['token']);
+    const [, setCookie] = useCookies(['token']);
 
       const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {               
         setState({
@@ -47,10 +47,12 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
             })
             
             .then ((response: AxiosResponse) => {
-                if (response.status < 400) {
+                if (response.status === 200) {
                    console.log(response)
                    console.log(response.data)
                    localStorage.setItem('token', response.data)
+                    setCookie('token', response.data)
+                    
                 } 
             })
             

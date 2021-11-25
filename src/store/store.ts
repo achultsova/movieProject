@@ -1,12 +1,17 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import Cookies from 'universal-cookie'
 import loginReducer from '../reducers/loginReducer';
+
+
 
 export type RootStore = ReturnType<typeof loginReducer>;
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunk));
-const token  = localStorage.getItem('token') || '';
 
+
+const cookies = new Cookies();
+const token  = cookies.get('token') || '';
 const initialState: RootStore = {};
 
 if (token) {

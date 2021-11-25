@@ -1,7 +1,6 @@
 import { Dispatch } from 'redux'
 import loginService from '../services/loginService';
 import * as actionTypes from "../types/loginTypes";
-import alertActions from './alertActions';
 
 
 
@@ -19,10 +18,7 @@ const loginAction: any = {
                     dispatch (success(user))             
                 },
                 error => {
-                    dispatch (failure(error));
-                    dispatch(
-                        alertActions.error(error)
-                    )
+                    dispatch (failure(error));                    
                 }    
             )
     },
