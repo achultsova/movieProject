@@ -4,9 +4,8 @@ type stateProps = {
 	username: string;
     email: string;
     mobile: string;
-    age: number;
+    age: string;
     password: string;
-	token: string;
     registering: boolean
 }
 
@@ -19,9 +18,8 @@ const initialState: stateProps = {
     username: '',
     email: '',
     mobile: '',
-    age: 22,
+    age: '',
     password: '',
-    token: '',
     registering: false
     }
 

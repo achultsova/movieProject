@@ -1,28 +1,30 @@
-
+import Cookies from 'universal-cookie'
 import * as actionTypes from "../types/loginTypes"
 
-export type stateProps = {
-    email?: string;
-    password?: string;
-    loading?: boolean;
-    authenticated?: boolean
+type stateProps = {
+	username: string;
+    email: string;
+    password: string;
+    loading: boolean;
+    authenticated: boolean;
+	token: string
 }
+
 
 type actionProps = {
     type: string;
-    user?: any
+    payload?: any
 }
 
-// let initialState: stateProps = {
-// username: '',
-// email: '',
-// password: '',
-// loading: false,
-// authenticated: false
-// }
+const initialState: stateProps = {
+username: '',
+email: '',
+password: '',
+loading: false,
+authenticated: false,
+token: ''
+}
 
-const user  = JSON.parse(localStorage.getItem('user') || '{}');
-const initialState: stateProps = user ? {  email: '', password: '', loading: true, authenticated: true } : {};
 
 
 const loginReducer = (
@@ -33,15 +35,15 @@ const loginReducer = (
 		case actionTypes.LOGIN_REQUEST: {
 			return {
 				...state,
-				user: action.user,
+				...action.payload,
 				loading: true,
 			};
 		}
 		case actionTypes.LOGIN_SUCCESS: {
+
 			return {
 				...state,
-				user: action.user,
-				loading: true,
+				loading: false,
         		authenticated: true
 			};
 		}
@@ -49,6 +51,8 @@ const loginReducer = (
 			return {}
 		}
 		case actionTypes.LOGOUT: {
+			const cookies = new Cookies();
+			cookies.remove('token')
 			return {}
 		}
       default:

@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
-import Cookies from 'universal-cookie'
 import { useHistory } from 'react-router-dom'
-// import { useDispatch } from 'react-redux'
-// import loginAction from '../../actions/loginAction'
+import { useDispatch } from 'react-redux'
+import loginAction from '../../actions/loginAction'
 import pencil from './icons/pencil.svg'
 import './personalAccount.scss'
 import tile from './icons/tile.svg'
@@ -17,15 +16,14 @@ import logout from './icons/logout.svg'
 
 const PersonalAccount: FC = () => {
 
-    // const dispatch = useDispatch(); 
-    const cookies = new Cookies();
+    const dispatch = useDispatch(); 
+
     const history = useHistory();
 
     const handleClick = () => {
-        cookies.remove('token')
+        dispatch(loginAction.logout())
         history.push("/account");
         window.location.reload();
-        // dispatch(loginAction.logout());
     }
 
     return(
