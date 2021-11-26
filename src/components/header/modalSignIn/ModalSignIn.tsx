@@ -31,9 +31,9 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
       }
 
       const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); 
+        e.preventDefault()
         const data = {
-            esername: state.username,
+            username: state.username,
             password: state.password
         }       
         localStorage.setItem('username', state.username as string)
@@ -44,7 +44,6 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
                     "Content-Type": "application/json",
                 }, 
             })
-            
             .then ((response: AxiosResponse) => {
                 if (response.status === 200) {
                    console.log(response)
@@ -56,8 +55,8 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
             })
             .then()
             .then (() => {
-                history.push("/account");
-                window.location.reload();
+                history.push("/account")
+                window.location.reload()
               })
            
            
@@ -66,7 +65,7 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
        
 
       const handleClose = () => {
-          history.push(history.location.pathname.replace('/login',''));
+          history.push(history.location.pathname.replace('/login',''))
 
         }
 return (
