@@ -5,14 +5,14 @@ BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home  from '../home/HomePage'
 import Header from '../header/HeaderComponent';
-import Films from '../films/Films';
+import Films from '../films/FilmsPage';
 import Series from '../seriesPage/Series';
 import Show from '../showPage/Show';
-import Cartoons from '../cartoons/Сartoons';
-import Collections from '../collections/Сollections';
+import Cartoons from '../cartoons/СartoonsPage';
+import Collections from '../collections/СollectionsPage';
 import PrimeSchedule from '../primeSchedulePage/PrimeSchedule';
 import Footer from '../footer/FooterPage';
-import Registration from '../registration/registration';
+import Registration from '../registration/RegistrationPage';
 import PersonalAccount from '../personalAccountPage/PersonalAccount';
 import ModalSignIn from '../header/modalSignIn/ModalSignIn';
 import PrivateRoute from '../../privateRoute';
