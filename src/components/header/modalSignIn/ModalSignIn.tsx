@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
 import React, { FC, useState } from 'react'
 import {  Form, Button, Modal } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'

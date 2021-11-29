@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import Cookies from 'universal-cookie'
 import * as actionTypes from "../types/loginTypes"
 
 type stateProps = {
 	username: string;
-    email: string;
     password: string;
     loading: boolean;
     authenticated: boolean;
@@ -18,14 +19,11 @@ type actionProps = {
 
 const initialState: stateProps = {
 username: '',
-email: '',
 password: '',
 loading: false,
 authenticated: false,
 token: ''
 }
-
-
 
 const loginReducer = (
     state: stateProps = initialState,
