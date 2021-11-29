@@ -1,4 +1,5 @@
 import * as actionTypes from "../types/registrationTypes"
+import { payloadProps } from './loginReducer'
 
 type stateProps = {
 	username: string;
@@ -9,9 +10,9 @@ type stateProps = {
     registering: boolean
 }
 
-type actionProps = {
+export type actionProps = {
     type: string;
-    payload?: any
+    payload?: payloadProps
 }
 
 const initialState: stateProps = {
@@ -26,7 +27,7 @@ const initialState: stateProps = {
 const registrationReducer = (
     state: stateProps = initialState,
     action: actionProps
-) => {
+): stateProps => {
     switch (action.type) {
         case actionTypes.REGISTER_REQUEST: {
             return {
@@ -36,10 +37,10 @@ const registrationReducer = (
             }
         }
         case actionTypes.REGISTER_SUCCESS: {
-            return {}
+            return state
         }
         case actionTypes.REGISTER_FAILURE: {
-            return {}
+            return state
         }
         default:
       return state;

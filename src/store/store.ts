@@ -2,7 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import Cookies from 'universal-cookie'
-import loginReducer from '../reducers/loginReducer';
+import loginReducer, { initialState as initialStateLogin } from '../reducers/loginReducer';
+
 
 
 
@@ -12,7 +13,9 @@ const composedEnhancer = composeWithDevTools(applyMiddleware(thunk));
 
 const cookies = new Cookies();
 const token  = cookies.get('token') || '';
-const initialState: RootStore = {};
+const initialState: RootStore = {
+	...initialStateLogin
+};
 
 if (token) {
 	initialState.authenticated = true;

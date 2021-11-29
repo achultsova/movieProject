@@ -43,13 +43,11 @@ return (
                     </Nav>  
                     ) :
                     (<Nav>  
-                        {/* <Button style = {{'margin': '10px'}} variant = "light" className = "mr-2" > Вход </Button> */}
                         <Link to={(location: Location) => `${location.pathname === '/' ? '' : location.pathname}/login`}><Button style = {{'margin': '10px'}} variant = "light" className = "mr-2"> Вход </Button> </Link>
                         <Button style = {{'margin': '10px'}} variant = "warning" className = "mr-2" href= "/registration">Регистрация</Button>
                     </Nav>
                     )
-                    }
-                    
+                    }                    
                 </Navbar.Collapse>
                 </Container>
             </Navbar>

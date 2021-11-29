@@ -1,57 +1,54 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import Cookies from 'universal-cookie'
 import * as actionTypes from "../types/loginTypes"
 
 type stateProps = {
 	username: string;
     password: string;
-    loading: boolean;
-    authenticated: boolean;
-	token: string
+    authenticated: boolean
 }
 
+export type payloadProps = {
+	username?: string;
+	password?: string;
+	authenticated?: boolean
+}
 
-type actionProps = {
+export type actionProps = {
     type: string;
-    payload?: any
+    payload?: payloadProps
 }
 
-const initialState: stateProps = {
+export const initialState: stateProps = {
 username: '',
 password: '',
-loading: false,
 authenticated: false,
-token: ''
 }
 
 const loginReducer = (
     state: stateProps = initialState,
     action: actionProps
-) => {
+): stateProps => {
   switch (action.type) {
 		case actionTypes.LOGIN_REQUEST: {
 			return {
 				...state,
 				...action.payload,
-				loading: true,
 			};
 		}
 		case actionTypes.LOGIN_SUCCESS: {
 
 			return {
 				...state,
-				loading: false,
         		authenticated: true
 			};
 		}
 		case actionTypes.LOGIN_FAILURE: {
-			return {}
+			return state
 		}
 		case actionTypes.LOGOUT: {
 			const cookies = new Cookies();
 			cookies.remove('token')
-			return {}
+			return state
 		}
       default:
         return state;

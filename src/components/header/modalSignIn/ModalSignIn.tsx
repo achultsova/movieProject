@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
-/* eslint-disable no-alert */
 import React, { FC, useState } from 'react'
 import {  Form, Button, Modal } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
 // import loginAction from '../../../actions/loginAction'
 import './modalSignIn.scss'
+import { toast } from "react-toastify";
 import axios, { AxiosResponse } from 'axios'
 import { useCookies} from 'react-cookie'
 
@@ -48,11 +47,15 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
             })
             .then ((response: AxiosResponse) => {
                 if (response.status === 200) {
-                   console.log(response)
-                   console.log(response.data)
                     setCookie('token', response.data)
                 } else if ( response.status === 404 ){
-                    alert('Проверьте введенные данные')
+                    toast('Проверьте введенные данные', {
+                        position: toast.POSITION.TOP_CENTER,
+                        className: 'toast-error', 
+                        autoClose: 4000,
+                        toastId: 1,
+                        progressClassName: 'error-progress-bar',
+                    })
                 }
             })
             .then()

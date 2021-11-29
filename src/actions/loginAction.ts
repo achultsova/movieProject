@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Dispatch } from 'redux'
 import * as actionTypes from "../types/loginTypes";
+import { actionProps } from '../reducers/loginReducer';
 
 const loginAction = {
-    login: () => (dispatch: Dispatch<any>) => {
+    login: () => (dispatch: Dispatch<actionProps>):void => {
         dispatch ({
             type: actionTypes.LOGIN_REQUEST,
         });
@@ -12,12 +11,12 @@ const loginAction = {
             type: actionTypes.LOGIN_SUCCESS,
         })
     },
-    failure: () => (dispatch: Dispatch<any>) =>{
+    failure: () => (dispatch: Dispatch<actionProps>):void =>{
         dispatch ({
         type: actionTypes.LOGIN_FAILURE,
         })
     },                                             
-    logout: () => (dispatch: Dispatch<any>) => {
+    logout: () => (dispatch: Dispatch<actionProps>):void => {
         dispatch ({
             type: actionTypes.LOGOUT,
         });

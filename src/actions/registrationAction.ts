@@ -1,15 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Dispatch } from 'redux'
 import * as actionTypes from "../types/registrationTypes";
+import { actionProps } from '../reducers/registrationReduser';
 
 const registrationAction = {
-    registerSuccess: () => (dispatch: Dispatch<any>) => {
+    registerSuccess: () => (dispatch: Dispatch<actionProps>):void => {
         dispatch ({
         type: actionTypes.REGISTER_SUCCESS,
         })
     },
-    registerFailure: () => (dispatch: Dispatch<any>) => {
+    registerFailure: () => (dispatch: Dispatch<actionProps>):void => {
         dispatch ({
             type: actionTypes.REGISTER_FAILURE,
             

@@ -1,10 +1,9 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-console */
 import React, { FC, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Container, Form, Button } from 'react-bootstrap'
 import axios, { AxiosResponse } from 'axios'
 import { useCookies } from 'react-cookie'
+import { toast } from "react-toastify";
 
 const Registration: FC = () => {
 
@@ -36,7 +35,6 @@ const Registration: FC = () => {
             ...state,
             [e.target.name]: e.target.value
           });
-        console.log()
     }
 
     
@@ -59,7 +57,6 @@ const Registration: FC = () => {
                 },       
             })
             .then ((res: AxiosResponse) => {
-                console.log(res.data)   
                 setCookie('token', res.data) 
             })
             .then (() => {
@@ -68,7 +65,13 @@ const Registration: FC = () => {
               })
            
         } else {
-                alert('Пароли не совпадают')
+                toast('Пароли не совпадают', {
+                    position: toast.POSITION.TOP_CENTER,
+                    className: 'toast-error', 
+                    autoClose: 4000,
+                    toastId: 1,
+                    progressClassName: 'error-progress-bar',
+                })
         }
         
     }
@@ -76,7 +79,7 @@ const Registration: FC = () => {
 
     return (
         <Container style={{height: "900px"}}>
-       <h1 style= {{paddingTop:"80px", color: "white"}}>Регистрация:</h1>
+       <h1 style= {{paddingTop:"40px", color: "white"}}>Регистрация:</h1>
        <Form style = {{marginBottom: "10px"}} onSubmit= {handleSubmit} >
             <Form.Group controlId = "fromBasicName" style= {{marginBottom: "10px", color: "white", width: "500px"}}>
                 <Form.Label >Имя:</Form.Label>

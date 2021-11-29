@@ -3,6 +3,8 @@ import './App.scss'
 import {
 BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import Home  from '../home/HomePage'
 import Header from '../header/HeaderComponent';
 import Films from '../films/FilmsPage';
@@ -19,8 +21,10 @@ import PrivateRoute from '../../privateRoute';
 
 
 
+
 const App: FC = () => (
     <div className="App">
+        <ToastContainer/>
         <Router> 
         <Header />
             <Switch>
