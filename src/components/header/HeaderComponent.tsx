@@ -10,9 +10,6 @@ import { RootStore } from '../../store/store'
 
 const Header: FC = () => {   
     const authenticated = useSelector((state: RootStore) => state.authenticated);
-    
-
-
      
 return (
     <div >
