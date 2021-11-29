@@ -10,7 +10,6 @@ const Footer: FC = () => (
         <Container className='footer_img'>
             <img src = {logo} ></img>
         </Container>
-
     </Container>
     </>
 )
