@@ -22,7 +22,7 @@ const PersonalAccount: FC = () => {
 
     const handleClick = () => {
         dispatch(loginAction.logout())
-        history.push("/account");
+        history.push("/");
         window.location.reload();
     }
 
