@@ -3,15 +3,15 @@ import './App.scss'
 import {
 BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home  from '../home/home'
+import Home  from '../home/HomePage'
 import Header from '../header/HeaderComponent';
 import Films from '../films/Films';
 import Series from '../seriesPage/Series';
 import Show from '../showPage/Show';
 import Cartoons from '../cartoons/Сartoons';
-import Collections from '../collections/collections';
+import Collections from '../collections/Сollections';
 import PrimeSchedule from '../primeSchedulePage/PrimeSchedule';
-import Footer from '../footer/Footer';
+import Footer from '../footer/FooterPage';
 import Registration from '../registration/registration';
 import PersonalAccount from '../personalAccountPage/PersonalAccount';
 import ModalSignIn from '../header/modalSignIn/ModalSignIn';
