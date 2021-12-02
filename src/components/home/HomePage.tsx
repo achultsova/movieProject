@@ -8,12 +8,12 @@ import Comedies from './comedies/Сomedies'
 
 const Home: FC = () => (
     <>
-    <Slider />
-    <Recommend />
-    <NewFilms />
-    <Horrors />
-    <ModernCartoons />
-    <Comedies />
+        <Slider />
+        <Recommend />
+        <NewFilms />
+        <Horrors />
+        <ModernCartoons />
+        <Comedies />
     </>
 )
 

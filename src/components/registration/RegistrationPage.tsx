@@ -2,13 +2,9 @@ import React, { FC, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Container, Form, Button } from 'react-bootstrap'
 import axios, { AxiosResponse } from 'axios'
-import { useCookies } from 'react-cookie'
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify'
 
 const Registration: FC = () => {
-
-    // const [cookies, setCookie ] = useCookies(['token']);
-
     interface Istate {
         username?: string;
         email?: string;
@@ -18,8 +14,7 @@ const Registration: FC = () => {
         passwordComfirm?: string
     }
 
-    const [, setCookie] = useCookies(['token']);
-    const history = useHistory(); 
+    const history = useHistory() 
 
     const [state, setState] = useState<Istate> ({
         username: '',
@@ -28,19 +23,17 @@ const Registration: FC = () => {
         age: '',
         password: '',
         passwordComfirm: ''
-      });
+    })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setState({
             ...state,
             [e.target.name]: e.target.value
-          });
+        })
     }
 
-    
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();  
+        e.preventDefault()  
         const data = {
             username: state.username,
             email: state.email,
@@ -52,69 +45,65 @@ const Registration: FC = () => {
         if (state.password === state.passwordComfirm) {
             axios.post('http://localhost:8080/registration', data,  {
                 headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
                 },       
             })
-            .then ((res: AxiosResponse) => {
-                setCookie('token', res.data) 
-            })
-            .then (() => {
-                history.push("/account");
-                window.location.reload();
-              })
+                .then ((res: AxiosResponse) => {
+                    const tokenData = res.data
+                    const d = new Date()
+                    d.setDate(180).toString()
+                    document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`
+                })
+                .then (() => {
+                    history.push('/account')
+                    window.location.reload()
+                })
            
         } else {
-                toast('Пароли не совпадают', {
-                    position: toast.POSITION.TOP_CENTER,
-                    className: 'toast-error', 
-                    autoClose: 4000,
-                    toastId: 1,
-                    progressClassName: 'error-progress-bar',
-                })
-        }
-        
+            toast('Пароли не совпадают', {
+                position: toast.POSITION.TOP_CENTER,
+                className: 'toast-error', 
+                autoClose: 4000,
+                toastId: 1,
+                progressClassName: 'error-progress-bar',
+            })
+        }        
     }
     
-
     return (
-        <Container style={{height: "900px"}}>
-       <h1 style= {{paddingTop:"40px", color: "white"}}>Регистрация:</h1>
-       <Form style = {{marginBottom: "10px"}} onSubmit= {handleSubmit} >
-            <Form.Group controlId = "fromBasicName" style= {{marginBottom: "10px", color: "white", width: "500px"}}>
-                <Form.Label >Имя:</Form.Label>
-                <Form.Control type="text" name = "username"  placeholder = "Укажите Ваше имя" onChange={handleChange}/>
-            </Form.Group>
-            <Form.Group controlId = "fromBasicEmail" style= {{marginBottom: "10px", color: "white", width: "500px"}}>
-                <Form.Label >Email адрес:</Form.Label>
-                <Form.Control type="email" name = "email"  placeholder = "Укажите Ваш email" onChange={handleChange}/>
-            </Form.Group>
-            <Form.Group controlId = "fromBasicName" style= {{marginBottom: "10px", color: "white", width: "500px"}}>
-                <Form.Label >Телефон:</Form.Label>
-                <Form.Control type="text" name = "mobile"  placeholder = "Укажите Ваш телефон" onChange={handleChange}/>
-            </Form.Group>
-            <Form.Group controlId = "fromBasicName" style= {{marginBottom: "10px", color: "white", width: "500px"}}>
-                <Form.Label >Возраст:</Form.Label>
-                <Form.Control type="text" name = "age"  placeholder = "Укажите Ваш возраст" onChange={handleChange}/>
-            </Form.Group>
-            <Form.Group controlId = "fromBasicPassword" style={{color: "white", marginBottom: "10px", width: "500px"}}>
-                <Form.Label>Пароль:</Form.Label>
-                <Form.Control type="password" name = "password"  placeholder = "Укажите Ваш пароль" onChange={handleChange}/>
-            </Form.Group>
-            <Form.Group controlId = "fromBasicPassword" style={{color: "white", marginBottom: "10px", width: "500px"}}>
-                <Form.Label>Повторите пароль:</Form.Label>
-                <Form.Control type="password" name = "passwordComfirm"  placeholder = "Повторите Ваш пароль" onChange={handleChange}/>
-            </Form.Group>
-            {/* <Form.Group controlId = "fromBasicCheckbox">
-                <Form.Check type="checkbox" label = "Запомнить меня" style={{color:"white"}}/>
-            </Form.Group> */}
-            <Button type = "submit" className='btn_submit' variant = "dark" style={{marginBottom: "15px"}}>Зарегистрировать</Button>
-            <p style={{color:"white"}}>Вернуться на <Link to="/" style={{color:"white"}}>главную</Link></p>
-        </Form>
-        
-    </Container>
+        <Container style={{height: '900px'}}>
+            <h1 style= {{paddingTop:'40px', color: 'white'}}>Регистрация:</h1>
+            <Form style = {{marginBottom: '10px'}} onSubmit= {handleSubmit} >
+                <Form.Group controlId = "fromBasicName" style= {{marginBottom: '10px', color: 'white', width: '500px'}}>
+                    <Form.Label >Имя:</Form.Label>
+                    <Form.Control type="text" name = "username"  placeholder = "Укажите Ваше имя" onChange={handleChange}/>
+                </Form.Group>
+                <Form.Group controlId = "fromBasicEmail" style= {{marginBottom: '10px', color: 'white', width: '500px'}}>
+                    <Form.Label >Email адрес:</Form.Label>
+                    <Form.Control type="email" name = "email"  placeholder = "Укажите Ваш email" onChange={handleChange}/>
+                </Form.Group>
+                <Form.Group controlId = "fromBasicName" style= {{marginBottom: '10px', color: 'white', width: '500px'}}>
+                    <Form.Label >Телефон:</Form.Label>
+                    <Form.Control type="text" name = "mobile"  placeholder = "Укажите Ваш телефон" onChange={handleChange}/>
+                </Form.Group>
+                <Form.Group controlId = "fromBasicName" style= {{marginBottom: '10px', color: 'white', width: '500px'}}>
+                    <Form.Label >Возраст:</Form.Label>
+                    <Form.Control type="text" name = "age"  placeholder = "Укажите Ваш возраст" onChange={handleChange}/>
+                </Form.Group>
+                <Form.Group controlId = "fromBasicPassword" style={{color: 'white', marginBottom: '10px', width: '500px'}}>
+                    <Form.Label>Пароль:</Form.Label>
+                    <Form.Control type="password" name = "password"  placeholder = "Укажите Ваш пароль" onChange={handleChange}/>
+                </Form.Group>
+                <Form.Group controlId = "fromBasicPassword" style={{color: 'white', marginBottom: '10px', width: '500px'}}>
+                    <Form.Label>Повторите пароль:</Form.Label>
+                    <Form.Control type="password" name = "passwordComfirm"  placeholder = "Повторите Ваш пароль" onChange={handleChange}/>
+                </Form.Group>
+                <Button type = "submit" className='btn_submit' variant = "dark" style={{marginBottom: '15px'}}>Зарегистрировать</Button>
+                <p style={{color:'white'}}>Вернуться на <Link to="/" style={{color:'white'}}>главную</Link></p>
+            </Form>        
+        </Container>
     )
 }
 
-
-export default Registration;
+export default Registration

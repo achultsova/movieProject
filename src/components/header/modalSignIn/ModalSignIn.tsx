@@ -1,37 +1,31 @@
 import React, { FC, useState } from 'react'
 import {  Form, Button, Modal } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
-// import loginAction from '../../../actions/loginAction'
 import './modalSignIn.scss'
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify'
 import axios, { AxiosResponse } from 'axios'
-import { useCookies} from 'react-cookie'
-
 
 const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
-
     interface Istate {
         username?: string;
         password?: string
     }
 
     const [state, setState] = useState<Istate> ({
-        username: "",
-        password: ""
-      });
+        username: '',
+        password: ''
+    })
 
-    const history = useHistory();  
-                                                                                                                                                                                      
-    const [, setCookie] = useCookies(['token']);
+    const history = useHistory()                                                                                                                                                                                  
 
-      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {               
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {               
         setState({
             ...state,
             [e.target.name]: e.target.value
-            });	    
-      }
+        })	    
+    }
 
-      const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const data = {
             username: state.username,
@@ -40,14 +34,17 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
         localStorage.setItem('username', state.username as string)
         axios.post('http://localhost:8080/login/', data, {
                 
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }, 
-            })
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }, 
+        })
             .then ((response: AxiosResponse) => {
                 if (response.status === 200) {
-                    setCookie('token', response.data)
+                    const tokenData = response.data
+                    const d = new Date()
+                    d.setDate(180).toString()
+                    document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`
                 } else if ( response.status === 404 ){
                     toast('Проверьте введенные данные', {
                         position: toast.POSITION.TOP_CENTER,
@@ -60,43 +57,39 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
             })
             .then()
             .then (() => {
-                history.push("/account")
+                history.push('/account')
                 window.location.reload()
-              })
-           
-           
-       
-        }
-       
+            })  
+    }   
 
-      const handleClose = () => {
-          history.push(history.location.pathname.replace('/login',''))
+    const handleClose = () => {
+        history.push(history.location.pathname.replace('/login',''))
 
-        }
-return (
-        <Modal show = { show } onHide= { handleClose } className='modal_sign_in'>
-        <Modal.Header closeButton>
-            <Modal.Title>Вход</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <Form  onSubmit = { handleSubmit } > 
-                <Form.Group controlId = "fromBasicEmail" className='form_group'>
-                    <Form.Label>Имя:</Form.Label>
-                    <Form.Control name="username" placeholder = "Укажите Ваш username" onChange = {handleChange} />
-                </Form.Group>
-                <Form.Group controlId = "fromBasicPassword" className='form_group'>
-                    <Form.Label>Пароль:</Form.Label>
-                    <Form.Control name="password" placeholder = "Укажите Ваш пароль" onChange = {handleChange} />
-                </Form.Group>
-                <Form.Group controlId = "fromBasicCheckbox" className='form_group'>
-                    <Form.Check type="checkbox" label = "Запомнить меня"/>
-                </Form.Group>
-                <Button type = "submit" className='btn_submit' variant = "dark">Вход</Button>
-                <Link to = "/registration" style = {{color: 'black'}} onClick= { handleClose }>Еще нет аккаунта?</Link>
-            </Form>   
-        </Modal.Body>
-    </Modal>
-     )
     }
+    return (
+        <Modal show = { show } onHide= { handleClose } className='modal_sign_in'>
+            <Modal.Header closeButton>
+                <Modal.Title>Вход</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form  onSubmit = { handleSubmit } > 
+                    <Form.Group controlId = "fromBasicEmail" className='form_group'>
+                        <Form.Label>Имя:</Form.Label>
+                        <Form.Control name="username" placeholder = "Укажите Ваш username" onChange = {handleChange} />
+                    </Form.Group>
+                    <Form.Group controlId = "fromBasicPassword" className='form_group'>
+                        <Form.Label>Пароль:</Form.Label>
+                        <Form.Control name="password" placeholder = "Укажите Ваш пароль" onChange = {handleChange} />
+                    </Form.Group>
+                    <Form.Group controlId = "fromBasicCheckbox" className='form_group'>
+                        <Form.Check type="checkbox" label = "Запомнить меня"/>
+                    </Form.Group>
+                    <Button type = "submit" className='btn_submit' variant = "dark">Вход</Button>
+                    <Link to = "/registration" style = {{color: 'black'}} onClick= { handleClose }>Еще нет аккаунта?</Link>
+                </Form>   
+            </Modal.Body>
+        </Modal>
+    )
+}
 
 export default ModalSignIn

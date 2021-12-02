@@ -22,6 +22,12 @@
     },
     "rules": {
         "no-use-before-define": "off",
+        "indent": ["error", 4],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": ["error", "never"],
         "@typescript-eslint/no-use-before-define": ["error"],
         "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
         "import/extensions": [

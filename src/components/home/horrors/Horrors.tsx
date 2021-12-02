@@ -16,22 +16,22 @@ interface Icard {
 
 const Horrors: FC = () => {
     const cardInfo: Icard[] = [
-        {image: movie1, link: "Заклятие"},
-        {image: movie2, link: "Коллекционер 2"},
-        {image: movie3, link: "Синистер"},
-        {image: movie4, link: "Астрал 4"},
-        {image: movie5, link: "Проклятие"},
-        {image: movie6, link: "Не стучи дважды"},
+        {image: movie1, link: 'Заклятие'},
+        {image: movie2, link: 'Коллекционер 2'},
+        {image: movie3, link: 'Синистер'},
+        {image: movie4, link: 'Астрал 4'},
+        {image: movie5, link: 'Проклятие'},
+        {image: movie6, link: 'Не стучи дважды'},
     ]
 
     const RenderCard: FC<{ card: Icard }> = ({ card }) => (
     
-            <Card style = {{'color': 'white', 'background': '#141414', 'border': 'solid #141414', 'width': '12rem'}} className = "mb-3 text-center ">
-                    <Card.Img src = { card.image } style = {{'height': '16rem'}} variant = "top"/>
-                    <Card.Body>
-                    <Card.Link href = "#" style = {{'color': 'white'}}> { card.link } </Card.Link>
-                    </Card.Body>
-                </Card>
+        <Card style = {{'color': 'white', 'background': '#141414', 'border': 'solid #141414', 'width': '12rem'}} className = "mb-3 text-center ">
+            <Card.Img src = { card.image } style = {{'height': '16rem'}} variant = "top"/>
+            <Card.Body>
+                <Card.Link href = "#" style = {{'color': 'white'}}> { card.link } </Card.Link>
+            </Card.Body>
+        </Card>
     )
 
     return (
@@ -41,15 +41,15 @@ const Horrors: FC = () => {
                 <a style = {{'color': 'white'}} href = '#'>Смотреть все</a>
             </div> 
             <div className = "cards">
-            {
-                cardInfo.map((card: Icard, index: number) => (<RenderCard card ={ card } key = {index} />))
-            }
+                {
+                    cardInfo.map((card: Icard, index: number) => (<RenderCard card ={ card } key = {index} />))
+                }
             </div>
             
                 
         </div>
-    );
-};
+    )
+}
     
 
 export default Horrors

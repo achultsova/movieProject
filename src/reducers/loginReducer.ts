@@ -1,59 +1,43 @@
-import Cookies from 'universal-cookie'
-import * as actionTypes from "../types/loginTypes"
+// import Cookies from 'universal-cookie'
+import * as actionTypes from '../types/loginTypes'
+import {statePropsLogin, actionProps } from './types'
 
-type stateProps = {
-	username: string;
-    password: string;
-    authenticated: boolean
-}
 
-export type payloadProps = {
-	username?: string;
-	password?: string;
-	authenticated?: boolean
-}
 
-export type actionProps = {
-    type: string;
-    payload?: payloadProps
-}
-
-export const initialState: stateProps = {
-username: '',
-password: '',
-authenticated: false,
+export const initialState: statePropsLogin = {
+    username: '',
+    password: '',
+    authenticated: false,
 }
 
 const loginReducer = (
-    state: stateProps = initialState,
+    state: statePropsLogin = initialState,
     action: actionProps
-): stateProps => {
-  switch (action.type) {
-		case actionTypes.LOGIN_REQUEST: {
-			return {
-				...state,
-				...action.payload,
-			};
-		}
-		case actionTypes.LOGIN_SUCCESS: {
+): statePropsLogin => {
+    switch (action.type) {
+    case actionTypes.LOGIN_REQUEST: {
+        return {
+            ...state,
+            ...action.payload,
+        }
+    }
+    case actionTypes.LOGIN_SUCCESS: {
 
-			return {
-				...state,
+        return {
+            ...state,
         		authenticated: true
-			};
-		}
-		case actionTypes.LOGIN_FAILURE: {
-			return state
-		}
-		case actionTypes.LOGOUT: {
-			const cookies = new Cookies();
-			cookies.remove('token')
-			return state
-		}
-      default:
-        return state;
+        }
+    }
+    case actionTypes.LOGIN_FAILURE: {
+        return state
+    }
+    case actionTypes.LOGOUT: {    
+        return state
+    }
+    default:
+        return state
     }  
 }
 
-export default loginReducer;
+export default loginReducer
 

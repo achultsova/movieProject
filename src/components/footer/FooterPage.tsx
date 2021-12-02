@@ -6,11 +6,11 @@ import './footer.scss'
 
 const Footer: FC = () => (
     <>
-    <Container  fluid className='footer'>
-        <Container className='footer_img'>
-            <img src = {logo} ></img>
+        <Container  fluid className='footer'>
+            <Container className='footer_img'>
+                <img src = {logo} ></img>
+            </Container>
         </Container>
-    </Container>
     </>
 )
 

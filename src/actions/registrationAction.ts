@@ -1,17 +1,16 @@
 import { Dispatch } from 'redux'
-import * as actionTypes from "../types/registrationTypes";
-import { actionProps } from '../reducers/registrationReduser';
+import * as actionTypes from '../types/registrationTypes'
+import { actionProps } from '../reducers/types'
 
 const registrationAction = {
     registerSuccess: () => (dispatch: Dispatch<actionProps>):void => {
         dispatch ({
-        type: actionTypes.REGISTER_SUCCESS,
+            type: actionTypes.REGISTER_SUCCESS,
         })
     },
     registerFailure: () => (dispatch: Dispatch<actionProps>):void => {
         dispatch ({
-            type: actionTypes.REGISTER_FAILURE,
-            
+            type: actionTypes.REGISTER_FAILURE,           
         })
     }
    

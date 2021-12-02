@@ -1,23 +1,23 @@
 import React, { FC } from 'react'
 import './App.scss'
 import {
-BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+    BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Home  from '../home/HomePage'
-import Header from '../header/HeaderComponent';
-import Films from '../films/FilmsPage';
-import Series from '../seriesPage/Series';
-import Show from '../showPage/Show';
-import Cartoons from '../cartoons/СartoonsPage';
-import Collections from '../collections/СollectionsPage';
-import PrimeSchedule from '../primeSchedulePage/PrimeSchedule';
-import Footer from '../footer/FooterPage';
-import Registration from '../registration/RegistrationPage';
-import PersonalAccount from '../personalAccountPage/PersonalAccount';
-import ModalSignIn from '../header/modalSignIn/ModalSignIn';
-import PrivateRoute from '../../privateRoute';
+import Header from '../header/HeaderComponent'
+import Films from '../films/FilmsPage'
+import Series from '../seriesPage/Series'
+import Show from '../showPage/Show'
+import Cartoons from '../cartoons/СartoonsPage'
+import Collections from '../collections/СollectionsPage'
+import PrimeSchedule from '../primeSchedulePage/PrimeSchedule'
+import Footer from '../footer/FooterPage'
+import Registration from '../registration/RegistrationPage'
+import PersonalAccount from '../personalAccountPage/PersonalAccount'
+import ModalSignIn from '../header/modalSignIn/ModalSignIn'
+import PrivateRoute from '../../privateRoute'
 
 
 
@@ -26,7 +26,7 @@ const App: FC = () => (
     <div className="App">
         <ToastContainer/>
         <Router> 
-        <Header />
+            <Header />
             <Switch>
                 <Route path = "/films" component = {Films} />
                 <Route path = "/series" component = {Series} />
@@ -40,7 +40,7 @@ const App: FC = () => (
             </Switch>
             <Footer />
             <Switch>
-                <Route path={`*/login`}>
+                <Route path={'*/login'}>
                     <ModalSignIn show={true} />
                 </Route>
             </Switch>
