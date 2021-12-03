@@ -9,8 +9,20 @@ import heart from './icons/heart.svg'
 import change from './icons/change.svg'
 import logout from './icons/logout.svg'
 
-class PersonalAccount extends Component<RouteComponentProps> {
-    handleClick = () => {
+// type Props = {
+//     handleClick: () => void
+// }
+
+interface Props extends RouteComponentProps {
+    handleClick: () => void
+}
+class PersonalAccount extends Component<Props> {
+    constructor(props: Props) {
+        super(props)
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+    handleClick () {
         document.cookie = 'token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
         this.props.history.push('/')
         window.location.reload()
@@ -66,7 +78,7 @@ class PersonalAccount extends Component<RouteComponentProps> {
                         <div>
                             <a href='#' className='change_password'>
                                 <div className='change_img'><img src={logout}></img></div> 
-                                <div className='change_text'><button className='btn_logout' onClick={() => this.handleClick()}>Выйти</button></div> 
+                                <div className='change_text'><button className='btn_logout' onClick={this.handleClick}>Выйти</button></div> 
                             </a>
                         </div>  
                     </div>    
