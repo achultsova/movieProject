@@ -32,8 +32,7 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
             password: state.password
         }       
         localStorage.setItem('username', state.username as string)
-        axios.post('http://localhost:8080/login/', data, {
-                
+        axios.post('http://localhost:8080/login/', data, {               
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',

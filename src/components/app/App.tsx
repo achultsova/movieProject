@@ -18,6 +18,7 @@ import Registration from '../registration/RegistrationPage'
 import PersonalAccount from '../personalAccountPage/PersonalAccount'
 import ModalSignIn from '../header/modalSignIn/ModalSignIn'
 import PrivateRoute from '../../privateRoute'
+import FilmDescriptionPage from '../filmDescription/FilmDescriptionPage'
 
 
 
@@ -35,6 +36,7 @@ const App: FC = () => (
                 <Route path = "/collections" component = {Collections} />
                 <Route path = "/primeSchedule" component = {PrimeSchedule} />
                 <Route path = "/registration" component = {Registration} />
+                <Route path = "/aboutfilm" component = {FilmDescriptionPage} />
                 <PrivateRoute path = "/account" component = {PersonalAccount} />
                 <Route path = "/" component = {Home} />
             </Switch>
