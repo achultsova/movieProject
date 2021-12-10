@@ -5,6 +5,7 @@ import { Card} from 'react-bootstrap'
 
 
 interface Icard {
+    id: string
     name: string;
     img: string;
 }
@@ -21,16 +22,18 @@ const Comedies: FC = () => {
         }
         getFilms()
     }, [])
+
     
     const RenderCard: FC<{ card: Icard }> = ({ card }) => (
-    
         <Card style = {{'color': 'white', 'background': '#141414', 'border': 'solid #141414', 'width': '12rem'}} className = "mb-3 text-center ">
             <Card.Img src = { card.img } style = {{'height': '16rem'}} alt="Film photo" variant = "top"/>
             <Card.Body>
-                <Card.Link href = "/aboutfilm" style = {{'color': 'white'}}> { card.name } </Card.Link>
+                <Card.Link href = "/aboutfilm"  style = {{'color': 'white'}}> { card.name } </Card.Link>
             </Card.Body>
         </Card>
     )
+
+    
 
     return (
         <div className = "comedy_films">

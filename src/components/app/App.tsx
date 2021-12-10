@@ -36,7 +36,7 @@ const App: FC = () => (
                 <Route path = "/collections" component = {Collections} />
                 <Route path = "/primeSchedule" component = {PrimeSchedule} />
                 <Route path = "/registration" component = {Registration} />
-                <Route path = "/aboutfilm" component = {FilmDescriptionPage} />
+                <Route path = "/aboutfilm/:id" component = {FilmDescriptionPage} />
                 <PrivateRoute path = "/account" component = {PersonalAccount} />
                 <Route path = "/" component = {Home} />
             </Switch>
