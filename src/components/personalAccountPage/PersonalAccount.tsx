@@ -9,21 +9,25 @@ import heart from './icons/heart.svg'
 import change from './icons/change.svg'
 import logout from './icons/logout.svg'
 
-// type Props = {
-//     handleClick: () => void
-// }
+interface RouteInfo {
+    userid: string;
+}
 
-interface Props extends RouteComponentProps {
+interface Props extends RouteComponentProps<RouteInfo> {
     handleClick: () => void
 }
+
 class PersonalAccount extends Component<Props> {
     constructor(props: Props) {
         super(props)
         this.handleClick = this.handleClick.bind(this)
     }
 
+    
+    
+
     handleClick () {
-        document.cookie = 'token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
+        document.cookie = 'token= ; expires = Thu, 01 Jan 1950 00:00:00 GMT'
         this.props.history.push('/')
         window.location.reload()
     }
@@ -62,9 +66,9 @@ class PersonalAccount extends Component<Props> {
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="#">
+                                    <a href="/likedfilms">
                                         <div><img src={heart} className='options_img'></img></div>
-                                        <div className='options_text'>Любимые<br/>категории</div>                        
+                                        <div className='options_text'>Любимые<br/>фильмы</div>                        
                                     </a>
                                 </li>
                             </ul>

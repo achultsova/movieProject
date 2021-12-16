@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 60px 0;
+    padding-top: 60px 0;
     min-width: 1420;
     width: 1260px;
     margin-left: auto;
@@ -13,7 +13,7 @@
 }
 
 .nameFilm {
-    padding-bottom: 80px;
+    padding-bottom: 30px;
 }
 
 .imgFilm {
@@ -26,5 +26,28 @@
     flex-direction: row;
     align-items: top;
     justify-content: space-between;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+}
+
+.liked{
+    display: flex;
+    justify-content: start;
+    text-decoration: none;
+    padding-bottom: 60px;  
+    padding-left: 100px;
+}
+
+.textLike {
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.imgLike {
+    height: 22px;
+    width: 22px;
+    flex: 0 0 16px;
+    top: 2px;
 }

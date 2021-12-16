@@ -1,15 +1,20 @@
 import React, { FC } from 'react'
 import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap'
 import './header.scss'
+import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+
 import logo from './icons/logo.svg'  
 import { RootStore } from '../../store/store'
 
 
 
+
 const Header: FC = () => {   
     const authenticated = useSelector((state: RootStore) => state.authenticated)
+    const {userid} = useParams<{userid?: string}>()
+
      
     return (
         <div >
@@ -21,12 +26,12 @@ const Header: FC = () => {
                     <Navbar.Toggle aria-controls = "responsive-navbar-nav" />
                     <Navbar.Collapse id = "responsive-navbar-nav">
                         <Nav className = "mr-auto" style={{marginRight: '70px'}}>
-                            <Nav.Item > <Nav.Link> <Link to = "/films" style={{color: 'white'}}>Фильмы</Link></Nav.Link> </Nav.Item>
-                            <Nav.Item> <Nav.Link> <Link to ="/series" style={{color: 'white'}}> Сериалы</Link></Nav.Link> </Nav.Item>
-                            <Nav.Item> <Nav.Link> <Link to ="/cartoons" style={{color: 'white'}}>Мультфильмы</Link> </Nav.Link> </Nav.Item>
-                            <Nav.Item> <Nav.Link><Link to ="/shows" style={{color: 'white'}}>Шоу</Link></Nav.Link> </Nav.Item>
-                            <Nav.Item> <Nav.Link><Link to ="/collections" style={{color: 'white'}}>Коллекции</Link></Nav.Link> </Nav.Item>
-                            <Nav.Item> <Nav.Link><Link to ="/primeSchedule" style={{color: 'white'}}>Кинопремьеры</Link></Nav.Link> </Nav.Item>
+                            <Nav.Item > <Nav.Link> <Link to = "/films" style={{color: 'white', textDecoration: 'none'}}>Фильмы</Link></Nav.Link> </Nav.Item>
+                            <Nav.Item> <Nav.Link> <Link to ="/series" style={{color: 'white', textDecoration: 'none'}}> Сериалы</Link></Nav.Link> </Nav.Item>
+                            <Nav.Item> <Nav.Link> <Link to ="/cartoons" style={{color: 'white', textDecoration: 'none'}}>Мультфильмы</Link> </Nav.Link> </Nav.Item>
+                            <Nav.Item> <Nav.Link><Link to ="/shows" style={{color: 'white', textDecoration: 'none'}}>Шоу</Link></Nav.Link> </Nav.Item>
+                            <Nav.Item> <Nav.Link><Link to ="/collections" style={{color: 'white', textDecoration: 'none'}}>Коллекции</Link></Nav.Link> </Nav.Item>
+                            <Nav.Item> <Nav.Link><Link to ="/primeSchedule" style={{color: 'white', textDecoration: 'none'}}>Кинопремьеры</Link></Nav.Link> </Nav.Item>
                         </Nav>
                         <Form >
                             <Form.Control style={{'margin': '10px', 'padding': '8px, 0, 8px, 16px', width: '100%', maxWidth: '160px'}}
@@ -36,7 +41,7 @@ const Header: FC = () => {
                         </Form>
                         {authenticated ?
                             ( <Nav>
-                                <Button style={{'margin': '10px'}} variant = "warning" className = "mr-2" href ='/account'>Личный кабинет</Button>
+                                <Button style={{'margin': '10px'}} variant = "warning" className = "mr-2" ><Link to={`/account/${userid}`} style={{color: 'black', textDecoration: 'none' }}>Личный кабинет</Link></Button>
                             </Nav>  
                             ) :
                             (<Nav>  

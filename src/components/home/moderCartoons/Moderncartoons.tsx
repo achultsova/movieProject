@@ -2,10 +2,12 @@ import React, { FC,  useState, useEffect } from 'react'
 import axios from 'axios'
 import './moderncartoons.scss'
 import { Card} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 interface Icard {
-    name: string;
+    _id: string
     img: string;
+    name: string;
 }
 
 const ModernCartoons: FC = () => {
@@ -20,11 +22,10 @@ const ModernCartoons: FC = () => {
     }, [])
     
     const RenderCard: FC<{ card: Icard }> = ({ card }) => (
-    
         <Card style = {{'color': 'white', 'background': '#141414', 'border': 'solid #141414', 'width': '12rem'}} className = "mb-3 text-center ">
             <Card.Img src = { card.img } style = {{'height': '16rem'}} alt="Film photo" variant = "top"/>
             <Card.Body>
-                <Card.Link href = "/aboutfilm" style = {{'color': 'white'}}> { card.name } </Card.Link>
+                <Link to={`/aboutfilm/${card._id}`} style = {{'color': 'white'}}>{ card.name }</Link> 
             </Card.Body>
         </Card>
     )

@@ -32,7 +32,7 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
             password: state.password
         }       
         localStorage.setItem('username', state.username as string)
-        axios.post('http://localhost:8080/login/', data, {               
+        axios.post('http://localhost:8080/login', data, {               
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -40,10 +40,12 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
         })
             .then ((response: AxiosResponse) => {
                 if (response.status === 200) {
-                    const tokenData = response.data
+                    const tokenData = response.data.token
                     const d = new Date()
                     d.setDate(180).toString()
-                    document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`
+                    document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`                  
+                    history.push('/account')
+                    window.location.reload()
                 } else if ( response.status === 404 ){
                     toast('Проверьте введенные данные', {
                         position: toast.POSITION.TOP_CENTER,
@@ -54,11 +56,7 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
                     })
                 }
             })
-            .then()
-            .then (() => {
-                history.push('/account')
-                window.location.reload()
-            })  
+            .then() 
     }   
 
     const handleClose = () => {

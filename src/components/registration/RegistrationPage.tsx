@@ -50,16 +50,15 @@ const Registration: FC = () => {
                 },       
             })
                 .then ((res: AxiosResponse) => {
-                    const tokenData = res.data
+                    debugger
+                    const tokenData = res.data.token
+                    const userid = res.data.id
                     const d = new Date()
                     d.setDate(180).toString()
                     document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`
-                })
-                .then (() => {
-                    history.push('/account')
+                    history.push(`/account/${userid}`)
                     window.location.reload()
-                })
-           
+                })   
         } else {
             toast('Пароли не совпадают', {
                 position: toast.POSITION.TOP_CENTER,

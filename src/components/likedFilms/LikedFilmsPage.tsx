@@ -1,9 +1,7 @@
-import React, { FC,  useState, useEffect } from 'react'
+import React, { FC, useState, useEffect } from 'react'
+import { Container, Card } from 'react-bootstrap'
 import axios from 'axios'
-import './comedies.scss'
-import { Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
 
 interface Icard {
     _id: string
@@ -11,19 +9,17 @@ interface Icard {
     name: string;
 }
 
-
-const Comedies: FC = () => {
+const LikedFilmsPage: FC = () => {
     const [films, setFilms] = useState ( [] )
-
+    
     useEffect(() => {
         const getFilms = async() => {
-            const response = await axios.get('http://localhost:8080/comedyFilms')
+            const response = await axios.get('http://localhost:8080/likedFilms')
             setFilms(response.data)
         }
         getFilms()
     }, [])
 
-    
     const RenderCard: FC<{ card: Icard }> = ({ card }) => (
         <Card style = {{'color': 'white', 'background': '#141414', 'border': 'solid #141414', 'width': '12rem'}} className = "mb-3 text-center ">
             <Card.Img src = { card.img } style = {{'height': '16rem'}} alt="Film photo" variant = "top"/>
@@ -33,24 +29,18 @@ const Comedies: FC = () => {
         </Card>
     )
 
-    
-
     return (
-        <div className = "comedy_films">
-            <div className= "m_c">
-                <h3 className = "comedies">Комедии:</h3>
-                <a style = {{'color': 'white'}} href = '#'>Смотреть все</a>
-            </div> 
-            <div className = "cards">
+    
+        <Container>
+            <h1 style = {{padding: '100px', color: 'white'}}>Добавлено в понравившиеся:</h1>
+            <div>
                 {
                     films.map((card: Icard, index: number) => (<RenderCard card ={ card } key = {index} />))
                 }
             </div>
-            
-                
-        </div>
+        </Container>
+       
     )
-}
-    
+} 
 
-export default Comedies
+export default LikedFilmsPage

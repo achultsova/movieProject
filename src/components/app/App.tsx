@@ -19,6 +19,7 @@ import PersonalAccount from '../personalAccountPage/PersonalAccount'
 import ModalSignIn from '../header/modalSignIn/ModalSignIn'
 import PrivateRoute from '../../privateRoute'
 import FilmDescriptionPage from '../filmDescription/FilmDescriptionPage'
+import LikedFilmsPage from '../likedFilms/LikedFilmsPage'
 
 
 
@@ -37,7 +38,8 @@ const App: FC = () => (
                 <Route path = "/primeSchedule" component = {PrimeSchedule} />
                 <Route path = "/registration" component = {Registration} />
                 <Route path = "/aboutfilm/:id" component = {FilmDescriptionPage} />
-                <PrivateRoute path = "/account" component = {PersonalAccount} />
+                <Route path = "/likedfilms" component = {LikedFilmsPage} />
+                <PrivateRoute path = "/account/:userid" component = {PersonalAccount} />
                 <Route path = "/" component = {Home} />
             </Switch>
             <Footer />
