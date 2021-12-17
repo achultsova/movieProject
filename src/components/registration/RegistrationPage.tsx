@@ -33,6 +33,7 @@ const Registration: FC = () => {
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        debugger
         e.preventDefault()  
         const data = {
             username: state.username,
@@ -52,11 +53,11 @@ const Registration: FC = () => {
                 .then ((res: AxiosResponse) => {
                     debugger
                     const tokenData = res.data.token
-                    const userid = res.data.id
+                    const usid = res.data.id
                     const d = new Date()
                     d.setDate(180).toString()
                     document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`
-                    history.push(`/account/${userid}`)
+                    history.push(`/account/${usid}`)
                     window.location.reload()
                 })   
         } else {

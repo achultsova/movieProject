@@ -41,10 +41,11 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
             .then ((response: AxiosResponse) => {
                 if (response.status === 200) {
                     const tokenData = response.data.token
+                    const useid = response.data.id
                     const d = new Date()
                     d.setDate(180).toString()
                     document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`                  
-                    history.push('/account')
+                    history.push(`/account/${useid}`)
                     window.location.reload()
                 } else if ( response.status === 404 ){
                     toast('Проверьте введенные данные', {
