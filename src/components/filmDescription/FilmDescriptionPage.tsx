@@ -14,7 +14,8 @@ const FilmDescriptionPage: FC = () => {
         description: '',
     } )
     const {id} = useParams<{id?: string}>()
-    const {userid} = useParams<{userid?: string}>()
+    const usersid = localStorage.getItem('userid')
+    localStorage.setItem('filmid', JSON.stringify(id))
     
 
     useEffect(() => {
@@ -34,17 +35,18 @@ const FilmDescriptionPage: FC = () => {
     },[id])
 
 
-    const handleClick = () => { 
-        debugger
-        axios.post('http://localhost:8080/likes', {               
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => { 
+        e.preventDefault()
+        const data = {
+            id: usersid,
+            filmid: id
+        }
+        axios.post('http://localhost:8080/likes', data, {               
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             }, 
-            data: {
-                id: userid,
-                filmid: id
-            }
+            
         })
             .then((response: AxiosResponse) => {
                 if (response.status === 200) {
@@ -56,7 +58,7 @@ const FilmDescriptionPage: FC = () => {
                         progressClassName: 'error-progress-bar',
                     })
                 } else if (response.status === 401) {
-                    toast('Ошибка подключения', {
+                    toast('Фильм уже был добавлен в понравившиеся', {
                         position: toast.POSITION.TOP_CENTER,
                         className: 'toast-error', 
                         autoClose: 4000,

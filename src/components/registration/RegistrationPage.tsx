@@ -1,8 +1,11 @@
 import React, { FC, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Container, Form, Button } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
 import axios, { AxiosResponse } from 'axios'
 import { toast } from 'react-toastify'
+import registrationAction from '../../actions/registrationAction'
+
 
 const Registration: FC = () => {
     interface Istate {
@@ -15,6 +18,7 @@ const Registration: FC = () => {
     }
 
     const history = useHistory() 
+    const dispatch = useDispatch()
 
     const [state, setState] = useState<Istate> ({
         username: '',
@@ -51,13 +55,13 @@ const Registration: FC = () => {
             })
                 .then ((res: AxiosResponse) => {
                     const tokenData = res.data.token
-                    const usid = res.data.id
-                    localStorage.setItem('userid', usid)
+                    localStorage.setItem('userid', res.data.id)
                     const d = new Date()
                     d.setDate(180).toString()
                     document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`
-                    history.push(`/account/${usid}`)
+                    history.push(`/account/${res.data.id}`)
                     window.location.reload()
+                    dispatch(registrationAction.registerSuccess())
                 })    
         } else {
             toast('Пароли не совпадают', {

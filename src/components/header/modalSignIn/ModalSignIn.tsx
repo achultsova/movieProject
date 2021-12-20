@@ -52,8 +52,8 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
                     d.setDate(180).toString()
                     document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`                  
                     history.push(`/account/${response.data.id}`)
-                    dispatch(loginAction.login())
                     window.location.reload()
+                    dispatch(loginAction.login())
                 } else if ( response.status === 404 ){
                     toast('Проверьте введенные данные', {
                         position: toast.POSITION.TOP_CENTER,
