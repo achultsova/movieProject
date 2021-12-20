@@ -33,7 +33,6 @@ const Registration: FC = () => {
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        debugger
         e.preventDefault()  
         const data = {
             username: state.username,
@@ -51,15 +50,15 @@ const Registration: FC = () => {
                 },       
             })
                 .then ((res: AxiosResponse) => {
-                    debugger
                     const tokenData = res.data.token
                     const usid = res.data.id
+                    localStorage.setItem('userid', usid)
                     const d = new Date()
                     d.setDate(180).toString()
                     document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`
                     history.push(`/account/${usid}`)
                     window.location.reload()
-                })   
+                })    
         } else {
             toast('Пароли не совпадают', {
                 position: toast.POSITION.TOP_CENTER,

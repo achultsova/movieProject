@@ -1,15 +1,18 @@
 import React, { FC, useState } from 'react'
 import {  Form, Button, Modal } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import './modalSignIn.scss'
 import { toast } from 'react-toastify'
 import axios, { AxiosResponse } from 'axios'
+import loginAction from '../../../actions/loginAction'
 
 const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
     interface Istate {
         username?: string;
         password?: string
     }
+    
 
     const [state, setState] = useState<Istate> ({
         username: '',
@@ -17,6 +20,7 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
     })
 
     const history = useHistory()                                                                                                                                                                                  
+    const dispatch = useDispatch()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {               
         setState({
@@ -40,12 +44,15 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
         })
             .then ((response: AxiosResponse) => {
                 if (response.status === 200) {
-                    const tokenData = response.data.token
-                    const useid = response.data.id
+                    debugger
+                    console.log(response.data)
+                    const tokenData = response.data.token 
+                    localStorage.setItem('userid', response.data.id)
                     const d = new Date()
                     d.setDate(180).toString()
                     document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`                  
-                    history.push(`/account/${useid}`)
+                    history.push(`/account/${response.data.id}`)
+                    dispatch(loginAction.login())
                     window.location.reload()
                 } else if ( response.status === 404 ){
                     toast('Проверьте введенные данные', {
@@ -56,8 +63,7 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
                         progressClassName: 'error-progress-bar',
                     })
                 }
-            })
-            .then() 
+            }) 
     }   
 
     const handleClose = () => {

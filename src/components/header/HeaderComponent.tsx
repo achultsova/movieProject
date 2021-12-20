@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap'
 import './header.scss'
-import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
@@ -13,7 +12,7 @@ import { RootStore } from '../../store/store'
 
 const Header: FC = () => {   
     const authenticated = useSelector((state: RootStore) => state.authenticated)
-    const {userid} = useParams<{userid?: string}>()
+    const userid = localStorage.getItem('userid')
 
      
     return (

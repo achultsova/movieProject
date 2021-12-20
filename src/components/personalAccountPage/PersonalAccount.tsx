@@ -28,6 +28,7 @@ class PersonalAccount extends Component<Props> {
 
     handleClick () {
         document.cookie = 'token= ; expires = Thu, 01 Jan 1950 00:00:00 GMT'
+        localStorage.removeItem('userid')
         this.props.history.push('/')
         window.location.reload()
     }
