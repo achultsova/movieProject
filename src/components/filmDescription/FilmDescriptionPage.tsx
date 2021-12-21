@@ -65,6 +65,14 @@ const FilmDescriptionPage: FC = () => {
                         toastId: 1,
                         progressClassName: 'error-progress-bar',
                     })
+                } else {
+                    toast('Что-то пошло не так', {
+                        position: toast.POSITION.TOP_CENTER,
+                        className: 'toast-error', 
+                        autoClose: 4000,
+                        toastId: 1,
+                        progressClassName: 'error-progress-bar',
+                    })
                 }
             })       
     }
