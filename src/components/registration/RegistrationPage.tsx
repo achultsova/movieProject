@@ -2,8 +2,9 @@ import React, { FC, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { Container, Form, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
 import { toast } from 'react-toastify'
+import client from '../../axiosInstance'
 import registrationAction from '../../actions/registrationAction'
 
 
@@ -45,15 +46,15 @@ const Registration: FC = () => {
             age: state.age,
             password: state.password,
         }
-        localStorage.setItem('username', state.username as string)
         if (state.password === state.passwordComfirm) {
-            axios.post('http://localhost:8080/registration', data,  {
+            client.post('/registration', data,  {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },       
             })
                 .then ((res: AxiosResponse) => {
+                    debugger
                     const tokenData = res.data.token
                     localStorage.setItem('userid', res.data.id)
                     const d = new Date()

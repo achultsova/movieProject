@@ -4,7 +4,8 @@ import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import './modalSignIn.scss'
 import { toast } from 'react-toastify'
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
+import client from '../../../axiosInstance'
 import loginAction from '../../../actions/loginAction'
 
 const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
@@ -34,9 +35,8 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
         const data = {
             username: state.username,
             password: state.password
-        }       
-        localStorage.setItem('username', state.username as string)
-        axios.post('http://localhost:8080/login', data, {               
+        } 
+        client.post('/login', data, {               
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -44,15 +44,12 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
         })
             .then ((response: AxiosResponse) => {
                 if (response.status === 200) {
-                    debugger
-                    console.log(response.data)
                     const tokenData = response.data.token 
                     localStorage.setItem('userid', response.data.id)
                     const d = new Date()
                     d.setDate(180).toString()
                     document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`                  
                     history.push(`/account/${response.data.id}`)
-                    window.location.reload()
                     dispatch(loginAction.login())
                 } else if ( response.status === 404 ){
                     toast('Проверьте введенные данные', {

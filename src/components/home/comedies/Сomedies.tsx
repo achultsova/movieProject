@@ -1,8 +1,8 @@
 import React, { FC,  useState, useEffect } from 'react'
-import axios from 'axios'
 import './comedies.scss'
 import { Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import client from '../../../axiosInstance'
 
 
 interface Icard {
@@ -17,7 +17,7 @@ const Comedies: FC = () => {
 
     useEffect(() => {
         const getFilms = async() => {
-            const response = await axios.get('http://localhost:8080/comedyFilms')
+            const response = await client.get('/comedyFilms')
             setFilms(response.data)
         }
         getFilms()

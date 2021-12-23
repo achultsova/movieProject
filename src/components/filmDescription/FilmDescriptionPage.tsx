@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import { useParams } from 'react-router'
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
 import { toast } from 'react-toastify'
+import client from '../../axiosInstance'
 import './filmDescriptionPage.scss'
 import like from './icons/like.svg'
 
@@ -21,7 +22,7 @@ const FilmDescriptionPage: FC = () => {
     useEffect(() => {
         if (id) {
             const getFilms = async() => {
-                const response = await axios.post('http://localhost:8080/descriptionFilm', {id}, {
+                const response = await client.post('/descriptionFilm', {id}, {
                     headers: {
                         Accept: 'application/json',
                         'Content-Type': 'application/json',
@@ -41,7 +42,7 @@ const FilmDescriptionPage: FC = () => {
             id: usersid,
             filmid: id
         }
-        axios.post('http://localhost:8080/likes', data, {               
+        client.post('/likes', data, {               
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -88,7 +89,7 @@ const FilmDescriptionPage: FC = () => {
             </div>
             <div className='liked' onClick={handleClick}>  
                 <div className='textLike'><button className='btn_logout'>Нравится</button></div>
-                <div><img className='imgLike'src={like}></img></div>      
+                <div><img className='imgLike'src={like} alt='постер фильма'></img></div>      
             </div>     
         </Container>
     )
