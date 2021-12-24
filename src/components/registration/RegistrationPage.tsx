@@ -6,6 +6,7 @@ import { AxiosResponse } from 'axios'
 import client from '../../axios/axiosInstance'
 import registrationAction from '../../actions/registrationAction'
 import notify from '../../toasts'
+import './RegistrationPage.scss'
 
 
 const Registration: FC = () => {
@@ -20,7 +21,6 @@ const Registration: FC = () => {
 
     const history = useHistory() 
     const dispatch = useDispatch()
-
     const [state, setState] = useState<Istate> ({
         username: '',
         email: '',
@@ -29,12 +29,22 @@ const Registration: FC = () => {
         password: '',
         passwordComfirm: ''
     })
+    const [style, setStyle] = useState({})
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setState({
             ...state,
             [e.target.name]: e.target.value
-        })
+        })   
+    }
+
+    const handleCheck = () => {
+        if (state.password === state.passwordComfirm) {
+            setStyle({border: '2px solid green'})
+        } else {
+            setStyle({border: '2px solid red'}) 
+            notify('Проверьте введённые пароли')
+        }
     }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -63,7 +73,7 @@ const Registration: FC = () => {
                     dispatch(registrationAction.registerSuccess())
                 })    
         } else {
-            notify('Пароли не совпадают')
+            notify('Что-то пошло не так')
             dispatch(registrationAction.registerFailure())
         }        
     }
@@ -72,29 +82,29 @@ const Registration: FC = () => {
         <Container style={{height: '900px'}}>
             <h1 style= {{paddingTop:'40px', color: 'white'}}>Регистрация:</h1>
             <Form style = {{marginBottom: '10px'}} onSubmit= {handleSubmit} >
-                <Form.Group controlId = "fromBasicName" style= {{marginBottom: '10px', color: 'white', width: '500px'}}>
+                <Form.Group controlId = "fromBasicName" className='inputs'>
                     <Form.Label >Имя:</Form.Label>
                     <Form.Control type="text" name = "username"  placeholder = "Укажите Ваше имя" onChange={handleChange}/>
                 </Form.Group>
-                <Form.Group controlId = "fromBasicEmail" style= {{marginBottom: '10px', color: 'white', width: '500px'}}>
+                <Form.Group controlId = "fromBasicEmail" className='inputs'>
                     <Form.Label >Email адрес:</Form.Label>
                     <Form.Control type="email" name = "email"  placeholder = "Укажите Ваш email" onChange={handleChange}/>
                 </Form.Group>
-                <Form.Group controlId = "fromBasicName" style= {{marginBottom: '10px', color: 'white', width: '500px'}}>
+                <Form.Group controlId = "fromBasicName" className='inputs' >
                     <Form.Label >Телефон:</Form.Label>
                     <Form.Control type="text" name = "mobile"  placeholder = "Укажите Ваш телефон" onChange={handleChange}/>
                 </Form.Group>
-                <Form.Group controlId = "fromBasicName" style= {{marginBottom: '10px', color: 'white', width: '500px'}}>
+                <Form.Group controlId = "fromBasicName" className='inputs'>
                     <Form.Label >Возраст:</Form.Label>
                     <Form.Control type="text" name = "age"  placeholder = "Укажите Ваш возраст" onChange={handleChange}/>
                 </Form.Group>
-                <Form.Group controlId = "fromBasicPassword" style={{color: 'white', marginBottom: '10px', width: '500px'}}>
+                <Form.Group controlId = "fromBasicPassword" className='inputs'>
                     <Form.Label>Пароль:</Form.Label>
                     <Form.Control type="password" name = "password"  placeholder = "Укажите Ваш пароль" onChange={handleChange}/>
                 </Form.Group>
-                <Form.Group controlId = "fromBasicPassword" style={{color: 'white', marginBottom: '10px', width: '500px'}}>
+                <Form.Group controlId = "fromBasicPassword" onChange={handleCheck} className='inputs'>
                     <Form.Label>Повторите пароль:</Form.Label>
-                    <Form.Control type="password" name = "passwordComfirm"  placeholder = "Повторите Ваш пароль" onChange={handleChange}/>
+                    <Form.Control type="password" name = "passwordComfirm"  placeholder = "Повторите Ваш пароль" style={style} onChange={handleChange}/>
                 </Form.Group>
                 <Button type = "submit" className='btn_submit' variant = "dark" style={{marginBottom: '15px'}}>Зарегистрировать</Button>
                 <p style={{color:'white'}}>Вернуться на <Link to="/" style={{color:'white'}}>главную</Link></p>
