@@ -2,11 +2,10 @@ import React, { FC, useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import { useParams } from 'react-router'
 import { AxiosResponse } from 'axios'
-import { toast } from 'react-toastify'
-import client from '../../axiosInstance'
+import client from '../../axios/axiosInstance'
 import './filmDescriptionPage.scss'
 import like from './icons/like.svg'
-
+import notify from '../../toasts'
 
 const FilmDescriptionPage: FC = () => {
     const [film, setFilm] = useState ( {
@@ -18,7 +17,6 @@ const FilmDescriptionPage: FC = () => {
     const usersid = localStorage.getItem('userid')
     localStorage.setItem('filmid', JSON.stringify(id))
     
-
     useEffect(() => {
         if (id) {
             const getFilms = async() => {
@@ -35,7 +33,6 @@ const FilmDescriptionPage: FC = () => {
         }    
     },[id])
 
-
     const handleClick = (e: React.MouseEvent<HTMLElement>) => { 
         e.preventDefault()
         const data = {
@@ -46,34 +43,17 @@ const FilmDescriptionPage: FC = () => {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': `${document.cookie}`
             }, 
             
         })
             .then((response: AxiosResponse) => {
                 if (response.status === 200) {
-                    toast('фильм добавлен к понравившимся', {
-                        position: toast.POSITION.TOP_CENTER,
-                        className: 'toast-error', 
-                        autoClose: 4000,
-                        toastId: 1,
-                        progressClassName: 'error-progress-bar',
-                    })
+                    notify('Фильм добавлен к понравившимся')
                 } else if (response.status === 401) {
-                    toast('Фильм уже был добавлен в понравившиеся', {
-                        position: toast.POSITION.TOP_CENTER,
-                        className: 'toast-error', 
-                        autoClose: 4000,
-                        toastId: 1,
-                        progressClassName: 'error-progress-bar',
-                    })
+                    notify('Фильм уже был добавлен к понравившимся')
                 } else {
-                    toast('Что-то пошло не так', {
-                        position: toast.POSITION.TOP_CENTER,
-                        className: 'toast-error', 
-                        autoClose: 4000,
-                        toastId: 1,
-                        progressClassName: 'error-progress-bar',
-                    })
+                    notify('Что-то пошло не так')
                 }
             })       
     }

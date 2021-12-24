@@ -3,10 +3,10 @@ import {  Form, Button, Modal } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import './modalSignIn.scss'
-import { toast } from 'react-toastify'
 import { AxiosResponse } from 'axios'
-import client from '../../../axiosInstance'
+import client from '../../../axios/axiosInstance'
 import loginAction from '../../../actions/loginAction'
+import notify from '../../../toasts'
 
 const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
     interface Istate {
@@ -52,13 +52,8 @@ const ModalSignIn: FC<{show: boolean}> = ({show = true}) => {
                     history.push(`/account/${response.data.id}`)
                     dispatch(loginAction.login())
                 } else if ( response.status === 404 ){
-                    toast('Проверьте введенные данные', {
-                        position: toast.POSITION.TOP_CENTER,
-                        className: 'toast-error', 
-                        autoClose: 4000,
-                        toastId: 1,
-                        progressClassName: 'error-progress-bar',
-                    })
+                    notify('Проверьте введённые данные')
+                    dispatch(loginAction.failure())
                 }
             }) 
     }   

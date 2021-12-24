@@ -3,9 +3,9 @@ import { Link, useHistory } from 'react-router-dom'
 import { Container, Form, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { AxiosResponse } from 'axios'
-import { toast } from 'react-toastify'
-import client from '../../axiosInstance'
+import client from '../../axios/axiosInstance'
 import registrationAction from '../../actions/registrationAction'
+import notify from '../../toasts'
 
 
 const Registration: FC = () => {
@@ -54,24 +54,17 @@ const Registration: FC = () => {
                 },       
             })
                 .then ((res: AxiosResponse) => {
-                    debugger
                     const tokenData = res.data.token
                     localStorage.setItem('userid', res.data.id)
                     const d = new Date()
                     d.setDate(180).toString()
                     document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`
                     history.push(`/account/${res.data.id}`)
-                    window.location.reload()
                     dispatch(registrationAction.registerSuccess())
                 })    
         } else {
-            toast('Пароли не совпадают', {
-                position: toast.POSITION.TOP_CENTER,
-                className: 'toast-error', 
-                autoClose: 4000,
-                toastId: 1,
-                progressClassName: 'error-progress-bar',
-            })
+            notify('Пароли не совпадают')
+            dispatch(registrationAction.registerFailure())
         }        
     }
     

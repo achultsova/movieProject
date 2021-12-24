@@ -5,6 +5,9 @@ import { actionProps } from '../reducers/types'
 const registrationAction = {
     registerSuccess: () => (dispatch: Dispatch<actionProps>):void => {
         dispatch ({
+            type: actionTypes.REGISTER_REQUEST,
+        })
+        dispatch ({
             type: actionTypes.REGISTER_SUCCESS,
         })
     },

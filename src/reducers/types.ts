@@ -21,5 +21,5 @@ export type statePropsRegist = {
     mobile: string;
     age: string;
     password: string;
-    registering: boolean
+    authenticated: boolean
 }

@@ -29,10 +29,18 @@ const loginReducer = (
         }
     }
     case actionTypes.LOGIN_FAILURE: {
-        return state
+        return {
+            ...state,
+        		authenticated: false
+        }
     }
-    case actionTypes.LOGOUT: {    
-        return state
+    case actionTypes.LOGOUT: { 
+        document.cookie = 'token= ; expires = Thu, 01 Jan 1950 00:00:00 GMT'
+        localStorage.removeItem('userid')   
+        return {
+            ...state,
+        		authenticated: false
+        }
     }
     default:
         return state

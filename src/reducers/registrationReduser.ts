@@ -7,7 +7,7 @@ const initialState: statePropsRegist = {
     mobile: '',
     age: '',
     password: '',
-    registering: false
+    authenticated: false
 }
 
 const registrationReducer = (
@@ -17,16 +17,21 @@ const registrationReducer = (
     switch (action.type) {
     case actionTypes.REGISTER_REQUEST: {
         return {
-            ...state,
-            registering: true  
-
+            ...state,  
+            ...action.payload,
         }
     }
     case actionTypes.REGISTER_SUCCESS: {
-        return state
+        return {
+            ...state,
+        		authenticated: true
+        }
     }
     case actionTypes.REGISTER_FAILURE: {
-        return state
+        return {
+            ...state,
+        		authenticated: false
+        }
     }
     default:
         return state

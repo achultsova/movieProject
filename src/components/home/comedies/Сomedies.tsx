@@ -2,7 +2,7 @@ import React, { FC,  useState, useEffect } from 'react'
 import './comedies.scss'
 import { Card} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import client from '../../../axiosInstance'
+import client from '../../../axios/axiosInstance'
 
 
 interface Icard {
