@@ -25,10 +25,10 @@ const FilmDescriptionPage: FC = () => {
                 localStorage.setItem('films', JSON.stringify(films))
             } else {
                 films= JSON.parse(localStorage.getItem('films') || '[]')
-                if (!films.includes(id || '') && films.length < 5) {
+                if (!films.includes(id || '') && films.length < 10) {
                     films.push(id || '')
                     localStorage.setItem('films', JSON.stringify(films))
-                } else if (!films.includes(id || '') && films.length >= 5) {
+                } else if (!films.includes(id || '') && films.length >= 10) {
                     films.shift()
                     films.push(id || '')
                     localStorage.setItem('films', JSON.stringify(films))

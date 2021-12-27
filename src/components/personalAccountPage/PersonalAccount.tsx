@@ -43,7 +43,7 @@ class PersonalAccount extends Component<Props> {
                                 <div> <h1 style={{paddingTop:'120px', color: 'white'}}>{localStorage.getItem('username')}</h1> </div>
                             </div>
                             <div className='profile_menu_item'>
-                                <a href='#'><img src={pencil} className='img_edit'></img>Редактировать</a>
+                                <a href='editAccount'><img src={pencil} className='img_edit'></img>Редактировать</a>
                             </div>
                         </div>
                         <div className='account_options'>
@@ -61,13 +61,13 @@ class PersonalAccount extends Component<Props> {
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="#">
+                                    <a href="/watchedFilms">
                                         <div><img src={watches} className='options_img'></img></div>
-                                        <div className='options_text'>Просмотры</div>                        
+                                        <div className='options_text'>Просмотренные</div>                        
                                     </a>
                                 </li>
                                 <li >
-                                    <a href="/likedfilms">
+                                    <a href="/likedFilms">
                                         <div><img src={heart} className='options_img'></img></div>
                                         <div className='options_text'>Любимые<br/>фильмы</div>                        
                                     </a>
