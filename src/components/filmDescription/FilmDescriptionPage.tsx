@@ -13,9 +13,26 @@ const FilmDescriptionPage: FC = () => {
         name: '',
         description: '',
     } )
-    const {id} = useParams<{id?: string}>()
+    const {id} = useParams<{id?: string}>() 
     const usersid = localStorage.getItem('userid')
     localStorage.setItem('filmid', JSON.stringify(id))
+
+    useEffect(() => {
+        const saveLastFilms = () => {
+            let films: string [] = []
+            if (localStorage.getItem('films') === null) {
+                films.push(id || '')
+                localStorage.setItem('films', JSON.stringify(films))
+            } else {
+                films= JSON.parse(localStorage.getItem('films') || '[]')
+                if (!films.includes(id || '')) {
+                    films.push(id || '')
+                    localStorage.setItem('films', JSON.stringify(films))
+                }    
+            }
+        }
+        saveLastFilms()
+    }, [])
     
     useEffect(() => {
         if (id) {

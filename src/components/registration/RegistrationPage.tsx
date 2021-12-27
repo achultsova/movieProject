@@ -36,16 +36,15 @@ const Registration: FC = () => {
             ...state,
             [e.target.name]: e.target.value
         })   
-    }
-
-    const handleCheck = () => {
-        if (state.password === state.passwordComfirm) {
+        if (state.passwordComfirm === state.password) {
             setStyle({border: '2px solid green'})
         } else {
             setStyle({border: '2px solid red'}) 
             notify('Проверьте введённые пароли')
         }
     }
+
+
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()  
@@ -56,14 +55,15 @@ const Registration: FC = () => {
             age: state.age,
             password: state.password,
         }
-        if (state.password === state.passwordComfirm) {
-            client.post('/registration', data,  {
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },       
-            })
-                .then ((res: AxiosResponse) => {
+        
+        client.post('/registration', data,  {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },       
+        })
+            .then ((res: AxiosResponse) => {
+                if (res.status === 200) {
                     const tokenData = res.data.token
                     localStorage.setItem('userid', res.data.id)
                     const d = new Date()
@@ -71,11 +71,11 @@ const Registration: FC = () => {
                     document.cookie =  `token=${encodeURIComponent(tokenData)}; expires= ${encodeURIComponent(d.toUTCString())}; path=/`
                     history.push(`/account/${res.data.id}`)
                     dispatch(registrationAction.registerSuccess())
-                })    
-        } else {
-            notify('Что-то пошло не так')
-            dispatch(registrationAction.registerFailure())
-        }        
+                } else {
+                    notify('Что-то пошло не так')
+                    dispatch(registrationAction.registerFailure())
+                }    
+            })           
     }
     
     return (
@@ -102,7 +102,7 @@ const Registration: FC = () => {
                     <Form.Label>Пароль:</Form.Label>
                     <Form.Control type="password" name = "password"  placeholder = "Укажите Ваш пароль" onChange={handleChange}/>
                 </Form.Group>
-                <Form.Group controlId = "fromBasicPassword" onChange={handleCheck} className='inputs'>
+                <Form.Group controlId = "fromBasicPassword"  className='inputs'>
                     <Form.Label>Повторите пароль:</Form.Label>
                     <Form.Control type="password" name = "passwordComfirm"  placeholder = "Повторите Ваш пароль" style={style} onChange={handleChange}/>
                 </Form.Group>
