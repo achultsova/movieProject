@@ -67,7 +67,7 @@ const EditAccountPage: FC = () => {
             .then ((res: AxiosResponse) => {
                 if (res.status === 200) {
                     notify('данные успешно изменены')
-                    history.push(`/account/${res.data}`)
+                    history.push(`/account/${userId}`)
                 } else {
                     notify('Что-то пошло не так')
                 }    

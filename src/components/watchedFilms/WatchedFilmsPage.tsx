@@ -3,6 +3,7 @@ import { Container, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import client from '../../axios/axiosInstance'
 import notify from '../../toasts'
+import './watchedFilms.scss'
 
 
 interface Icard {
@@ -34,7 +35,7 @@ const WatchedFilmsPage: FC = () => {
     }, [])
 
     const RenderCard: FC<{ card: Icard }> = ({ card }) => (
-        <Card style = {{'color': 'white', 'background': '#141414', 'border': 'solid #141414', 'width': '12rem'}} className = "mb-3 text-center ">
+        <Card style = {{'color': 'white', 'background': '#141414', 'border': 'solid #141414', 'width': '12rem', margin: '15px', flexWrap: 'wrap'}} className = "mb-3 text-center card">
             <Card.Img src = { card.img } style = {{'height': '16rem'}} alt="Film photo" variant = "top"/>
             <Card.Body>
                 <Link to={`/aboutfilm/${card._id}`} style = {{'color': 'white'}}>{ card.name }</Link> 
@@ -44,9 +45,9 @@ const WatchedFilmsPage: FC = () => {
 
     return (
     
-        <Container>
-            <h1 style = {{padding: '100px', color: 'white'}}>Последние просмотренные:</h1>
-            <div style = {{display: 'flex', flexDirection: 'row'}}>
+        <Container className='container' style={{minHeight: '700px'}}>
+            <h1 style = {{padding: '50px', color: 'white'}}>Последние просмотренные:</h1>
+            <div className='cards'>
                 {
                     films.map((card: Icard, index: number) => (<RenderCard card ={ card } key = {index} />))
                 }
