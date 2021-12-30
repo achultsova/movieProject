@@ -14,6 +14,7 @@ interface Icard {
 
 const WatchedFilmsPage: FC = () => {
     const [films, setFilms] = useState ( [] )
+    const token = document.cookie
     
     useEffect(() => {
         const filmLast = JSON.parse(localStorage.getItem('films') || '[]')
@@ -25,6 +26,7 @@ const WatchedFilmsPage: FC = () => {
                     headers: {
                         Accept: 'application/json',
                         'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
                     }
                 })
                 setFilms(response.data)

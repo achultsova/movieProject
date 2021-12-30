@@ -13,12 +13,15 @@ interface Icard {
 const LikedFilmsPage: FC = () => {
     const [films, setFilms] = useState ( [] )
     const userId = localStorage.getItem('userid')
+    const token = document.cookie
+
     useEffect(() => {
         const getFilms = async() => {
             const response = await client.post('/likedFilms', userId, {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
                 }
             })
                    
