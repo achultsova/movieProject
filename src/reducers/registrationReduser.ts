@@ -1,11 +1,12 @@
 import * as actionTypes from '../types/registrationTypes'
 import { actionProps, statePropsRegist } from './types'
 
-const initialState: statePropsRegist = {
+export const initialState: statePropsRegist = {
     username: '',
     email: '',
     mobile: '',
     age: '',
+    role: '',
     password: '',
     authenticated: false
 }
@@ -24,13 +25,13 @@ const registrationReducer = (
     case actionTypes.REGISTER_SUCCESS: {
         return {
             ...state,
-        		authenticated: true
+        	authenticated: true
         }
     }
     case actionTypes.REGISTER_FAILURE: {
         return {
             ...state,
-        		authenticated: false
+        	authenticated: false
         }
     }
     default:

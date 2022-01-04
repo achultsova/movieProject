@@ -20,6 +20,7 @@ export type statePropsRegist = {
     email: string;
     mobile: string;
     age: string;
+    role: string;
     password: string;
     authenticated: boolean
 }

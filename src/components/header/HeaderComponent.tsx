@@ -3,7 +3,6 @@ import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap'
 import './header.scss'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
 import logo from './icons/logo.svg'  
 import { RootStore } from '../../store/store'
 

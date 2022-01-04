@@ -15,6 +15,7 @@ const Registration: FC = () => {
         email?: string;
         mobile?: string;
         age?: string;
+        role?: string;
         password?: string;
         passwordComfirm?: string
     }
@@ -26,25 +27,17 @@ const Registration: FC = () => {
         email: '',
         mobile:'',
         age: '',
+        role: '',
         password: '',
         passwordComfirm: ''
     })
-    const [style, setStyle] = useState({})
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setState({
             ...state,
             [e.target.name]: e.target.value
         })   
-        if (state.passwordComfirm === state.password) {
-            setStyle({border: '2px solid green'})
-        } else {
-            setStyle({border: '2px solid red'}) 
-            notify('Проверьте введённые пароли')
-        }
     }
-
-
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()  
@@ -53,6 +46,7 @@ const Registration: FC = () => {
             email: state.email,
             mobile: state.mobile,
             age: state.age,
+            role: state.role,
             password: state.password,
         }
         
@@ -98,13 +92,36 @@ const Registration: FC = () => {
                     <Form.Label >Возраст:</Form.Label>
                     <Form.Control type="text" name = "age"  placeholder = "Укажите Ваш возраст" onChange={handleChange}/>
                 </Form.Group>
+                <p style= {{color: 'white'}}>Укажите вашу роль: </p>
+                <div style={{display: 'flex', flexDirection: 'row'}}>
+                    <div className="radio" style= {{color: 'white', paddingRight: '20px'}}>
+                        <label >
+                            <input 
+                                type="radio"
+                                value="User"
+                                name= "role"
+                                checked= {state.role === 'User'}
+                                onChange={handleChange}/>
+                        User </label>
+                    </div>
+                    <div className="radio" style= {{color: 'white'}}>
+                        <label >
+                            <input 
+                                type="radio"
+                                value="Admin"
+                                name= "role"
+                                checked= {state.role === 'Admin'}
+                                onChange={handleChange}/>
+                        Admin </label>
+                    </div>
+                </div>
                 <Form.Group controlId = "fromBasicPassword" className='inputs'>
                     <Form.Label>Пароль:</Form.Label>
                     <Form.Control type="password" name = "password"  placeholder = "Укажите Ваш пароль" onChange={handleChange}/>
                 </Form.Group>
                 <Form.Group controlId = "fromBasicPassword"  className='inputs'>
                     <Form.Label>Повторите пароль:</Form.Label>
-                    <Form.Control type="password" name = "passwordComfirm"  placeholder = "Повторите Ваш пароль" style={style} onChange={handleChange}/>
+                    <Form.Control type="password" name = "passwordComfirm"  placeholder = "Повторите Ваш пароль" onChange={handleChange}/>
                 </Form.Group>
                 <Button type = "submit" className='btn_submit' variant = "dark" style={{marginBottom: '15px'}}>Зарегистрировать</Button>
                 <p style={{color:'white'}}>Вернуться на <Link to="/" style={{color:'white'}}>главную</Link></p>

@@ -25,13 +25,13 @@ const loginReducer = (
 
         return {
             ...state,
-        		authenticated: true
+        	authenticated: true
         }
     }
     case actionTypes.LOGIN_FAILURE: {
         return {
             ...state,
-        		authenticated: false
+        	authenticated: false
         }
     }
     case actionTypes.LOGOUT: { 
@@ -39,7 +39,7 @@ const loginReducer = (
         localStorage.removeItem('userid')   
         return {
             ...state,
-        		authenticated: false
+        	authenticated: false
         }
     }
     default:
